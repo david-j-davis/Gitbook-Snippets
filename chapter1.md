@@ -39,6 +39,7 @@
     mapdiv.style.height = '800px';
   }
 }```
+
 ```$(document).ready(function(){
 /* Browser detection */
 if(!(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/IEMobile/i))){
