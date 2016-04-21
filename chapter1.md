@@ -15,7 +15,7 @@
                data: formData,
                type: "POST",
                success: function(response) {
-                    $(#some-div).html('<p>Thanks for signing up</p>');
+                    $(#some-div).html(response);
                };
 
           }).fail(function (jqXHR) {
@@ -26,6 +26,7 @@
      }); //End DOM ready
      
  ####Browser Detection
+ ######Mobile device useragent detection
  ---
      function detectBrowser() {
         var useragent = navigator.userAgent;
@@ -49,8 +50,8 @@
       });
 
 ####HTML5 Video jQuery Play/Pause
+######When custom play button clicked, alternate play/pause on hover
 ---
-```   // Event listener for the play/pause button
     $('.video .play-button#play').on('click', function(e) {
         e.preventDefault();
         //console.log('you clicked it');
@@ -88,6 +89,6 @@
             }
 
         });
-    }```
+    }
 
 
