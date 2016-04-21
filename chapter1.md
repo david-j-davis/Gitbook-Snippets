@@ -48,5 +48,46 @@
       }
       });
 
+####HTML5 Video jQuery Play/Pause
+---
+```   // Event listener for the play/pause button
+    $('.video .play-button#play').on('click', function(e) {
+        e.preventDefault();
+        //console.log('you clicked it');
+        if($('#video')[0].paused == true) {
+            //console.log('paused is true');
+            $('#video')[0].play();
+            $('.video .play-button#play').fadeOut();
+            checkHover();
+        }
+    });
+
+    function checkHover() {
+        $('.video').on('mouseover', function(){
+
+            if( $('#video')[0].paused == true) {
+               $('.video .play-button#play').stop().fadeIn();
+            } else {
+                $('.video .play-button#play').hide();
+                $('.video .play-button#pause').stop().fadeIn();
+                $('.video .play-button#pause').on('click', function(e){
+                e.preventDefault();
+                $('#video')[0].pause();
+                $('.video .play-button#pause').hide();
+                $('.video .play-button#play').stop().fadeIn();
+
+                });
+
+            }
+        }).on('mouseout', function(){
+
+            if( $('#video')[0].paused == false) {
+                $('.video .play-button#pause').stop().fadeOut();
+            } else {
+
+            }
+
+        });
+    }```
 
 
