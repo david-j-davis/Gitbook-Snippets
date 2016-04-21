@@ -1,3 +1,3 @@
-# My Awesome Book
+#DD'S DEV DOCUMENTATION
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+THIS BOOCK CONTAINS MY DEVELOPMENT DOCUMENTATION, HOW TO'S, AS WELL AS SNIPPETS OF CODE.
