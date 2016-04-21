@@ -1,6 +1,6 @@
 # JS Snippets
 
-####AJAX Example
+####AJAX jQuery Example
 ---
 
     $(document).ready(function () {
@@ -24,6 +24,28 @@
 
      }); //End submit function 
      }); //End DOM ready
+     
+ ####AJAX JavaScript Example
+ ---
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://api.github.com/search/repositories?q=go');
+    xhr.addEventListener('readystatechange', function() {
+      console.log(xhr.readyState);
+      //readyState equal to 4 means call is complete
+      if (xhr.readyState === 4) {
+        if (xhr.status == 200) {
+        var resp = JSON.parse(xhr.responseText);
+        //console.log(resp);
+        //console.log(resp.items);
+        $scope.items = resp.items;
+        $rootScope.items_info = "changed the items array";
+        console.log($rootScope.item_info);
+        //$scope.$digest(); // updates the rootscope
+        $scope.$apply(); //most time you want to use this though it has performance issues
+        }
+      }
+    });
+    xhr.send();
      
  ####Browser Detection
  ######Mobile device useragent detection
