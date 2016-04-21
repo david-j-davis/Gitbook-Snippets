@@ -24,6 +24,29 @@
 
      }); //End submit function 
      }); //End DOM ready
+     
+ ####Browser Detection
+ ---
+```function detectBrowser() {
+  var useragent = navigator.userAgent;
+  var mapdiv = document.getElementById("map");
+
+  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+    mapdiv.style.width = '100%';
+    mapdiv.style.height = '100%';
+  } else {
+    mapdiv.style.width = '600px';
+    mapdiv.style.height = '800px';
+  }
+}```
+```$(document).ready(function(){
+/* Browser detection */
+if(!(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/IEMobile/i))){
+//logic
+} else {
+//logic
+}
+});```
 
 
 
