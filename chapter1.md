@@ -113,4 +113,35 @@
         });
     }
 
+####JavaScript OO Prototype
+---
+    function Car(make) {
+    "use strict";
+    this.make = make;
+    }
 
+    Car.prototype.company = 'audi';
+
+    var a6 = new Car('A6');
+
+    console.log(a6.make);
+    console.log(a6.company);
+    
+####JavaScript OO with ES6
+---
+    'use strict';
+
+    class Person {
+      constructor(name) {
+        this.name = name;
+      }
+      sayHello() {
+        console.log("hello from ", this.name);
+      }
+    }
+
+    var sarath = new Person('Sarath');
+
+    sarath.sayHello();
+
+    //babel es6-compile.js --out-file es6.js
