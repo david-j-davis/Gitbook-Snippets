@@ -146,7 +146,7 @@
 
     //babel es6-compile.js --out-file es6.js
 
-####jQuery $.when() done() callback
+####jQuery $.when().done() callback
 ---
       $('.hamburger').on('click', function(){
 
@@ -166,3 +166,17 @@
         });
 
       });
+      
+ ####jQuery $.promise().done() callback
+ ---
+     $( "button" ).on( "click", function() {
+      $( "p" ).append( "Started..." );
+
+      $( "div" ).each(function( i ) {
+        $( this ).fadeIn().fadeOut( 1000 * ( i + 1 ) );
+      });
+
+      $( "div" ).promise().done(function() {
+        $( "p" ).append( " Finished! " );
+      });
+    });
