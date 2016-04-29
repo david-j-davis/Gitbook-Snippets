@@ -145,3 +145,24 @@
     sarath.sayHello();
 
     //babel es6-compile.js --out-file es6.js
+
+####jQuery $.when() done() callback
+---
+      $('.hamburger').on('click', function(){
+
+        var toggleNav = function() {
+          $('body').toggleClass('fixed');
+          $('header, header nav').toggleClass('show');
+          $('.hamburger .fa').toggleClass('hidden');
+        }
+
+        $.when( toggleNav() ).done(function() {
+          var w = $(window).height();
+          var n = $('header nav.show').height();
+          //console.log(w + ',' + n);
+          if (n > w) {
+            $('header nav.show').css('height', w-60); //tel issue requires 60px
+          }
+        });
+
+      });
