@@ -1,3 +1,3 @@
 #DD's Dev Documentation
 
-THIS BOOCK CONTAINS MY DEVELOPMENT DOCUMENTATION, HOW TO'S, AS WELL AS SNIPPETS OF CODE.
+This book contains my development documentation, how to's, as well as snippets of code.
