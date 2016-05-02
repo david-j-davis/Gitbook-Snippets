@@ -6,5 +6,5 @@
 * [PHP Snippets](php-snippets.md)
 * [Terminal](terminal.md)
 * [HTML5](html5.md)
-* CSS Resetting
+* [CSS Resetting](css_resetting.md)
 
