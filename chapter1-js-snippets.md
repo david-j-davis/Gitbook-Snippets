@@ -1,4 +1,10 @@
 # JS Snippets
+---
+####Javascript Best Practices
+- Keep global variables to a min. because they are stored in memory
+- You can call functions before they are declared because JavaScript is read before anything executes except when using function expressions- in which case you cannot call them before they are declared.
+- use ‘use strict’
+- Arrays can contain objects and vice versa
 
 ####AJAX jQuery Example
 ---
