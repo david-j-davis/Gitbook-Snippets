@@ -1,5 +1,16 @@
 # PHP Snippets
 
+####Useragent with PHP
+---
+      <?php if((preg_match('/(?i)msie [10]/',$_SERVER['HTTP_USER_AGENT'])) || (preg_match('/Trident/',$_SERVER['HTTP_USER_AGENT']))){ ?>
+      <html class="ie" <?php language_attributes(); ?>>
+      <?php }else{ ?>
+      <!--[if lte IE 7]> <html class="ie ie7" <?php language_attributes(); ?>> <![endif]-->
+      <!--[if IE 8]> <html class="ie ie8" <?php language_attributes(); ?>> <![endif]-->
+      <!--[if gt IE 8]> <html class="ie ie9" <?php language_attributes(); ?>> <![endif]-->
+      <!--[if !IE]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
+      <?php } ?>
+      
 ####Modified search with ACF
 ---
     - Modify functions.php:
