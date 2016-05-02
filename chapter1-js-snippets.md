@@ -180,3 +180,73 @@
         $( "p" ).append( " Finished! " );
       });
     });
+
+####jQuery in view
+---
+    Query(document).ready(function($) {
+    var s = $("html.desktop .release");
+    s.each(function() {
+        $(this).offset().top > $(window).scrollTop() + .75 * $(window).height() && $(this).addClass("hidden")
+    }), $(window).on("scroll", function() {
+        s.each(function() {
+            $(this).offset().top <= $(window).scrollTop() + .75 * $(window).height() && $(this).hasClass("hidden") && $(this).removeClass("hidden").addClass("move")
+        })
+    })
+});
+
+      CSS (example):
+
+      .hidden {visibility:hidden}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+
+      .move {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
+
+####Return array/object of keys in JS
+---
+    //return an array of objects according to key, value, or key and value matching
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else
+            //if key matches and value matches or if key matches and value is not passed (eliminating the case where key matches but passed value does not)
+            if (i == key && obj[i] == val || i == key && val == '') { //
+                objects.push(obj);
+            } else if (obj[i] == val && key == ''){
+                //only add if the object is not already in the array
+                if (objects.lastIndexOf(obj) == -1){
+                    objects.push(obj);
+                }
+            }
+        }
+        return objects;
+    }
+
+    //return an array of keys that match on a certain value
+    function getKeys(obj, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getKeys(obj[i], val));
+            } else if (obj[i] == val) {
+                objects.push(i);
+            }
+        }
+        return objects;
+    }
+
+    //return an array of values that match on a certain key
+    function getValues(obj, key) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getValues(obj[i], key));
+            } else if (i == key) {
+                objects.push(obj[i]);
+            }
+        }
+        return objects;
+    }
