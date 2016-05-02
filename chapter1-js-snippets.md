@@ -115,6 +115,12 @@
 
 ####JavaScript OO Prototype
 ---
+- The first thing to put in every JavaScript file is the "use strict" declaration.
+- To create an object definition, you define a constructor function.
+- JavaScript is a little different, but this constructor function works a bit like a class.
+- Most web languages have classes that define the properties and methods available in an object.
+- You can create a method in a JavaScript object by adding a function to its prototype property.
+```
     function Car(make) {
     "use strict";
     this.make = make;
@@ -125,7 +131,7 @@
     var a6 = new Car('A6');
 
     console.log(a6.make);
-    console.log(a6.company);
+    console.log(a6.company);```
     
 ####JavaScript OO with ES6
 ---
