@@ -297,8 +297,33 @@
         }
 
        });
+       
+####Useragent with JS
+---
+    function getInternetExplorerVersion(){
+    var rv = -1;
+    if (navigator.appName == 'Microsoft Internet Explorer'){
+        var ua = navigator.userAgent;
+        var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+        rv = parseFloat( RegExp.$1 );
+    }
+    else if (navigator.appName == 'Netscape'){
+        var ua = navigator.userAgent;
+        var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+        rv = parseFloat( RegExp.$1 );
+    }
+    return rv;
+    };
+
+
+    if (getInternetExplorerVersion() >= 10){
+        $('body').addClass('ie11');
+    };
 
 ####Useragent test with Modernizr
+---
     //Add Modernizr test
     Modernizr.addTest('iOS6', function() {
         return /(iphone|ipad|ipod)\sOS\s6/i.test(navigator.userAgent);
@@ -310,6 +335,7 @@
     }]);
     
 ####Youtube API
+---
     https://css-tricks.com/play-button-youtube-and-vimeo-api/
       https://developers.google.com/youtube/player_parameters?hl=en
 
