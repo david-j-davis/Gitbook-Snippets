@@ -199,6 +199,20 @@
       .hidden {visibility:hidden}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
 
       .move {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
+      
+---
+
+    //Scroll opacity function
+    var changeOpacity = function(){
+        var elements = $(‘.someDiv, .aSecondDiv');
+
+                var st = $(this).scrollTop();
+                elements.css({ 'opacity' : (1 - st/600) });
+
+    }
+    $(window).scroll(function(){
+    changeOpacity();
+    });
 
 ####Return array/object of keys in JS
 ---
@@ -250,3 +264,92 @@
         }
         return objects;
     }
+####Smooth Scroll with jQuery
+---
+    var smoothScroll = function() {
+
+    $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+    var target = $(this.hash);
+    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+    if (target.length) {
+      $('html,body').animate({
+      scrollTop: target.offset().top
+    }, 500);
+    return false;
+    }
+    }
+    });
+    }; smoothScroll();
+---
+    //smooth scroll on load
+    jQuery(document).ready(function() {
+
+        var hash = window.location.hash;
+
+        if(hash != ""){
+                var target = jQuery(hash);
+                if(target.length){
+                        jQuery('html,body').animate({
+                        scrollTop: target.offset().top
+                        }, 500);
+                }
+        }
+
+       });
+
+####Useragent test with Modernizr
+    //Add Modernizr test
+    Modernizr.addTest('iOS6', function() {
+        return /(iphone|ipad|ipod)\sOS\s6/i.test(navigator.userAgent);
+    });
+    Modernizr.load([{
+        test: Modernizr.iOS6,
+        yep: 'vendor/cycle2-ios6fix.js’,
+         nope: …,
+    }]);
+    
+####Youtube API
+    https://css-tricks.com/play-button-youtube-and-vimeo-api/
+      https://developers.google.com/youtube/player_parameters?hl=en
+
+      var player;
+
+      function onPlayerReady(event) {
+
+        // bind events
+        var playButton = document.getElementById("yt-play-button");
+        playButton.addEventListener("click", function() {
+          player.playVideo();
+        });
+
+        var pauseButton = document.getElementById("yt-pause-button");
+        pauseButton.addEventListener("click", function() {
+          player.pauseVideo();
+        });
+
+          //set height of iframe to container
+          //on player ready
+          //Then on window resize adjust to parent container
+
+      }
+
+      function onYouTubePlayerAPIReady() {
+        // create the global player from the specific iframe (#video)
+        player = new YT.Player('video', {
+          events: {
+            // call this function when player is ready to use
+            'onReady': onPlayerReady
+          }
+        });
+      }
+
+      // Load YouTube Frame API
+      (function(){ //Closure, to not leak to the scope
+        var s = document.createElement("script");
+        s.src = "http://www.youtube.com/player_api"; /* Load Player API*/
+        var before = document.getElementsByTagName("script")[0];
+        before.parentNode.insertBefore(s, before);
+      })();
+      
+ 
