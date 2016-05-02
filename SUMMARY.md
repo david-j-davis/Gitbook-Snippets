@@ -8,4 +8,5 @@
 * [HTML5](html5.md)
 * [CSS Resetting](css_resetting.md)
 * [MySQL](mysql.md)
+* HTML Emails
 
