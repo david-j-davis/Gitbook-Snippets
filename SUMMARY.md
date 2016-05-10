@@ -11,6 +11,4 @@
 * [HTML Emails](html_emails.md)
 * [NPM](npm.md)
 * [Typography](typography.md)
-* Node.js
-   * nodejs
 
