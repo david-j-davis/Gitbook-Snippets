@@ -1,5 +1,10 @@
 # Terminal
 
+####Atom.io shell commands
+atom . (opens folder)
+atom file.js (opens file)
+atom (opens editor)
+
 ####Export / Import Large Database from MAMP using Terminal
 ---
 MAMP is a great tool for running servers locally, however, when you must export that site you have been developing locally and your database is huge, then you could have some problems with PHPMyAdmin.

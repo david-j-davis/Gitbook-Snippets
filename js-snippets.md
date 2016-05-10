@@ -28,9 +28,9 @@
                $('#myDiv').html("<p>Sorry! " + jqXHR.statusText + "error.</p>");
           }); //End ajax
 
-     }); //End submit function 
+     }); //End submit function
      }); //End DOM ready
-     
+
  ####AJAX JavaScript Example
  ---
     var xhr = new XMLHttpRequest();
@@ -52,7 +52,7 @@
       }
     });
     xhr.send();
-     
+
  ####Browser Detection
  ######Mobile device useragent detection
  ---
@@ -69,13 +69,12 @@
       }
 
     $(document).ready(function(){
-      /* Browser detection */
       if(!(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/IEMobile/i))){
-      //logic
+        //logic
       } else {
-      //logic
+        //logic
       }
-      });
+    });
 
 ####HTML5 Video jQuery Play/Pause
 ######When custom play button clicked, alternate play/pause on hover
@@ -138,7 +137,7 @@
 
     console.log(a6.make);
     console.log(a6.company);
-    
+
 ####JavaScript OO with ES6
 ---
     'use strict';
@@ -178,7 +177,7 @@
         });
 
       });
-      
+
  ####jQuery $.promise().done() callback
  ---
      $( "button" ).on( "click", function() {
@@ -211,7 +210,7 @@
       .hidden {visibility:hidden}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
 
       .move {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
-      
+
 ---
 
     //Scroll opacity function
@@ -279,7 +278,7 @@
 ####Merge two Objects in JS
 ---
     function merge(target, source) {             /* Merges two (or more) objects,        giving the last one precedence */         if ( typeof target !== 'object' ) {         target = {};     }         for (var property in source) {                 if ( source.hasOwnProperty(property) ) {                         var sourceProperty = source[ property ];                         if ( typeof sourceProperty === 'object' ) {                 target[ property ] = util.merge( target[ property ], sourceProperty );                 continue;             }                         target[ property ] = sourceProperty;                     }             }         for (var a = 2, l = arguments.length; a < l; a++) {         merge(target, arguments[a]);     }         return target; };
-      
+
 ####Smooth Scroll with jQuery
 ---
     var smoothScroll = function() {
@@ -313,7 +312,7 @@
         }
 
        });
-       
+
 ####Useragent with JS
 ---
     function getInternetExplorerVersion(){
@@ -321,12 +320,6 @@
     if (navigator.appName == 'Microsoft Internet Explorer'){
         var ua = navigator.userAgent;
         var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-        if (re.exec(ua) != null)
-        rv = parseFloat( RegExp.$1 );
-    }
-    else if (navigator.appName == 'Netscape'){
-        var ua = navigator.userAgent;
-        var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
         if (re.exec(ua) != null)
         rv = parseFloat( RegExp.$1 );
     }
@@ -349,11 +342,11 @@
         yep: 'vendor/cycle2-ios6fix.js’,
          nope: …,
     }]);
-    
+
 ####Youtube API
 ---
-    https://css-tricks.com/play-button-youtube-and-vimeo-api/
-      https://developers.google.com/youtube/player_parameters?hl=en
+      [Play button with youtube](https://css-tricks.com/play-button-youtube-and-vimeo-api/)
+      [Youtube google dev](https://developers.google.com/youtube/player_parameters?hl=en)
 
       var player;
 
@@ -393,5 +386,13 @@
         var before = document.getElementsByTagName("script")[0];
         before.parentNode.insertBefore(s, before);
       })();
-      
- 
+####Touch Events with jQuery
+---
+      $('obj').bind('touchstart', function(e){
+
+      });
+
+      or
+
+      $('obj').bind('touchstart mousedown', function(e){
+      });
