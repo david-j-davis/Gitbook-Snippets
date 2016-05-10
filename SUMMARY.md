@@ -10,5 +10,5 @@
 * [MySQL](mysql.md)
 * [HTML Emails](html_emails.md)
 * [NPM](npm.md)
-* Typography
+* [Typography](typography.md)
 
