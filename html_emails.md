@@ -1,5 +1,5 @@
 # HTML Emails
-
+---
 Static:
 
 - Name image files as such: 'cw_project_image-name_300x200.jpg'
