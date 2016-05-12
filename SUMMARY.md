@@ -14,5 +14,5 @@
 * [Nodejs](nodejs.md)
 * [Git & Github](git-n-github.md)
 * [RegExp](regexp.md)
-* SVG's
+* [SVG's](svg.md)
 
