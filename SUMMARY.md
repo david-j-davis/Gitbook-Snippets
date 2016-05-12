@@ -13,5 +13,5 @@
 * [Typography](typography.md)
 * [Nodejs](nodejs.md)
 * [Git & Github](git-n-github.md)
-* RegExp
+* [RegExp](regexp.md)
 
