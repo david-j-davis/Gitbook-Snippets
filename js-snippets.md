@@ -31,7 +31,7 @@
      }); //End submit function
      }); //End DOM ready
 
- ####AJAX JavaScript Example
+####AJAX JavaScript example
  ---
     var xhr = new XMLHttpRequest();
     xhr.open('get', 'https://api.github.com/search/repositories?q=go');
@@ -53,8 +53,74 @@
     });
     xhr.send();
 
- ####Browser Detection
- ######Mobile device useragent detection
+####AJAX JavaScript example with multiple get functions
+---
+      function get(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url);
+        xhr.addEventListener('readystatechange', function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log('successful ... should call callback ... ');
+                    callback(null, JSON.parse(xhr.responseText));
+                } else {
+                    console.log('error ... callback with error data ... ');
+                    callback(xhr, null);
+                }
+            }
+        });
+        xhr.send();
+      }
+
+      get('http://localhost:3000/search/repositories?q=nodejs', function (err, data) {
+          if (err) console.log('error, xhr: ', xhr);
+          else console.log(data);
+      }); // 63342, 3000
+      get('https://api.github.com/search/repositories?q=iot', function (err, data) {
+          if (err) console.log('error, xhr: ', xhr);
+          else console.log(data);
+      });
+
+####AJAX JavaScript example with multiple get functions and Promise
+---
+      var terms = ['nodejs', 'iot', 'go'];
+
+      function get(url, callback) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('get', url);
+          xhr.addEventListener('readystatechange', function () {
+              if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                      console.log('successful ... should call callback ... ');
+                      callback(null, JSON.parse(xhr.responseText));
+                  } else {
+                      console.log('error ... callback with error data ... ');
+                      callback(xhr, null);
+                  }
+              }
+          });
+          xhr.send();
+      }
+
+      function getPromise(url) {
+          return new Promise(function (resolve, reject) {
+              get(url, function (err, result) {
+                  if (err) reject(err);
+                  else resolve(result);
+              });
+          });
+      }
+
+      var promises = terms.map(function (term) {
+           return getPromise('https://api.github.com/search/repositories?q=' + term);
+      });
+
+      Promise.all(promises).then(function (data) {
+          console.log(data);
+      });
+
+####Browser Detection
+######Mobile device useragent detection
  ---
      function detectBrowser() {
         var useragent = navigator.userAgent;
