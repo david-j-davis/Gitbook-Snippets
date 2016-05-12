@@ -1,5 +1,5 @@
 # PHP Snippets
-
+---
 ####Useragent with PHP
 ---
       <?php if((preg_match('/(?i)msie [10]/',$_SERVER['HTTP_USER_AGENT'])) || (preg_match('/Trident/',$_SERVER['HTTP_USER_AGENT']))){ ?>
@@ -11,7 +11,7 @@
       <!--[if !IE]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
       <?php } ?>
       
-####Modified search with ACF
+####Modified search with Wordpress ACF
 ---
     - Modify functions.php:
 
