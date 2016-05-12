@@ -12,5 +12,5 @@
 * [NPM](npm.md)
 * [Typography](typography.md)
 * [Nodejs](nodejs.md)
-* Git & Github
+* [Git & Github](git-n-github.md)
 
