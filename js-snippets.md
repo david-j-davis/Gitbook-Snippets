@@ -72,7 +72,7 @@
         xhr.send();
       }
 
-      get('http://localhost:3000/search/repositories?q=nodejs', function (err, data) {
+      get('https://api.github.com/search/repositories?q=nodejs', function (err, data) {
           if (err) console.log('error, xhr: ', xhr);
           else console.log(data);
       }); // 63342, 3000
