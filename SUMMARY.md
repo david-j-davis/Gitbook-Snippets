@@ -12,4 +12,7 @@
 * [NPM](npm.md)
 * [Typography](typography.md)
 * [Nodejs](nodejs.md)
+* [Git & Github](git-n-github.md)
+* [RegExp](regexp.md)
+* [SVGs](svg.md)
 

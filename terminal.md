@@ -1,5 +1,5 @@
 # Terminal
-
+---
 ####Atom.io shell commands
 atom . (opens folder)
 atom file.js (opens file)
