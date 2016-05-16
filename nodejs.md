@@ -181,3 +181,46 @@ Create a separate directory for your additional long scripts in package.json
       |   ├── product.js
       |   ├── product.spec.js
       |   └── product.hbs
+
+####Databases
+---
+######Storing data in a global variable
+
+If a user wants to sign up for your application, you might want to create a route handler to make it possible:
+
+      const users = []
+
+      app.post('/users', function (req, res) {  
+          // retrieve user posted data from the body
+          const user = req.body
+          users.push({
+            name: user.name,
+            age: user.age
+          })
+          res.send('successfully registered')
+      })
+
+Using this method might be problematic for several reasons:
+
+- RAM is expensive,
+- memory resets each time you restart your application,
+- if you don't clean up, sometimes you'll end up with stack overflow.
+
+If we store our user data permanently on the file system, we can avoid the previously listed problems.
+
+      const fs = require('fs')
+
+      app.post('/users', function (req, res) {  
+          const user = req.body
+          fs.appendToFile('users.txt', JSON.stringify({ name: user.name, age: user.age }), (err) => {
+              res.send('successfully registered')
+          })
+      })
+
+Unfortunately storing user data this way still has a couple of flaws:
+
+- Appending is okay, but think about updating or deleting.
+- If we're working with files, there is no easy way to access them in parallel (system-wide locks will prevent you from writing).
+- When we try to scale our application up, we cannot split files (you can, but it is way beyond the level of this tutorial) in between servers.
+
+######Node.js and PostgreSQL

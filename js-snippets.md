@@ -183,6 +183,33 @@
 
         });
     }
+####JavaScript OO closure function
+---
+      var makeCounter = function() {
+        var privateCounter = 0;
+        function changeBy(val) {
+          privateCounter += val;
+        }
+        return {
+          increment: function() {
+            changeBy(1);
+          },
+          decrement: function() {
+            changeBy(-1);
+          },
+          value: function() {
+            return privateCounter;
+          }
+        }  
+      };
+      //save an instance of makeCounter() as seperate variables
+      var counter1 = makeCounter();
+      var counter2 = makeCounter();
+
+      counter1.increment();
+      counter1.increment();
+      alert(counter1.value()); // Alerts 2
+      alert(counter2.value()); // Alerts 0
 
 ####JavaScript OO Prototype
 ---
