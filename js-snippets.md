@@ -233,6 +233,29 @@ A closure is a special kind of object that combines two things: a function, and 
     console.log(a6.make);
     console.log(a6.company);
 
+
+####JavaScript Namespacing function
+---
+    var Configurator = Configurator || (function() {
+
+      someOtherFunction() {
+        //some logic
+      }
+
+      function start() {
+        //some logic
+        someOtherFunction();
+      }
+
+      // public face of the module
+      return {
+          start: start
+      };
+    })();
+
+    //Call the module:
+    Configurator.start();
+
 ####JavaScript OO with ES6
 ---
     'use strict';
@@ -371,8 +394,25 @@ A closure is a special kind of object that combines two things: a function, and 
         return objects;
     }
 ####Merge two Objects in JS
+######Merges two (or more) objects,        giving the last one precedence
 ---
-    function merge(target, source) {             /* Merges two (or more) objects,        giving the last one precedence */         if ( typeof target !== 'object' ) {         target = {};     }         for (var property in source) {                 if ( source.hasOwnProperty(property) ) {                         var sourceProperty = source[ property ];                         if ( typeof sourceProperty === 'object' ) {                 target[ property ] = util.merge( target[ property ], sourceProperty );                 continue;             }                         target[ property ] = sourceProperty;                     }             }         for (var a = 2, l = arguments.length; a < l; a++) {         merge(target, arguments[a]);     }         return target; };
+    function merge(target, source) {
+      if ( typeof target !== 'object' ) {         
+        target = {};     
+        }         
+      for (var property in source) {                 
+        if ( source.hasOwnProperty(property) ) {                         
+          var sourceProperty = source[ property ];                         
+          if ( typeof sourceProperty === 'object' ) {                 
+            target[ property ] = util.merge( target[ property ], sourceProperty );                 
+            continue;             }                         
+            target[ property ] = sourceProperty;                     
+            }             
+            }         
+            for (var a = 2, l = arguments.length; a < l; a++) {         
+              merge(target, arguments[a]);     
+              }         
+              return target; };
 
 ####Smooth Scroll with jQuery
 ---
@@ -438,6 +478,47 @@ A closure is a special kind of object that combines two things: a function, and 
          nope: …,
     }]);
 
+####HTML5 Video jQuery Play/Pause
+######When custom play button clicked, alternate play/pause on hover
+---
+    $('.video .play-button#play').on('click', function(e) {
+        e.preventDefault();
+        //console.log('you clicked it');
+        if($('#video')[0].paused == true) {
+            //console.log('paused is true');
+            $('#video')[0].play();
+            $('.video .play-button#play').fadeOut();
+            checkHover();
+        }
+    });
+
+    function checkHover() {
+        $('.video').on('mouseover', function(){
+
+            if( $('#video')[0].paused == true) {
+               $('.video .play-button#play').stop().fadeIn();
+            } else {
+                $('.video .play-button#play').hide();
+                $('.video .play-button#pause').stop().fadeIn();
+                $('.video .play-button#pause').on('click', function(e){
+                e.preventDefault();
+                $('#video')[0].pause();
+                $('.video .play-button#pause').hide();
+                $('.video .play-button#play').stop().fadeIn();
+
+                });
+
+            }
+        }).on('mouseout', function(){
+
+            if( $('#video')[0].paused == false) {
+                $('.video .play-button#pause').stop().fadeOut();
+            } else {
+
+            }
+
+        });
+    }
 ####Youtube API
 ---
       [Play button with youtube](https://css-tricks.com/play-button-youtube-and-vimeo-api/)
