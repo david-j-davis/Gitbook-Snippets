@@ -185,6 +185,8 @@
     }
 ####JavaScript OO closure function
 ---
+A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
+
       var makeCounter = function() {
         var privateCounter = 0;
         function changeBy(val) {
