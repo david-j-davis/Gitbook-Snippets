@@ -1,12 +1,12 @@
 # JS Snippets
 ---
-####Javascript Best Practices
+##Javascript Best Practices
 - Keep global variables to a min. because they are stored in memory
 - You can call functions before they are declared because JavaScript is read before anything executes except when using function expressions- in which case you cannot call them before they are declared.
 - use ‘use strict’, especially with es6
 - Arrays can contain objects and vice versa
 
-####AJAX jQuery Example
+##AJAX jQuery Example
 ---
 
     $(document).ready(function () {
@@ -31,7 +31,7 @@
      }); //End submit function
      }); //End DOM ready
 
-####AJAX JavaScript example
+##AJAX JavaScript example
  ---
     var xhr = new XMLHttpRequest();
     xhr.open('get', 'https://api.github.com/search/repositories?q=go');
@@ -53,7 +53,7 @@
     });
     xhr.send();
 
-####AJAX JavaScript example with multiple get functions
+##AJAX JavaScript example with multiple get functions
 ---
       function get(url, callback) {
         var xhr = new XMLHttpRequest();
@@ -81,7 +81,7 @@
           else console.log(data);
       });
 
-####AJAX JavaScript example with multiple get functions and Promise
+##AJAX JavaScript example with multiple get functions and Promise
 ---
       var terms = ['nodejs', 'iot', 'go'];
 
@@ -119,7 +119,7 @@
           console.log(data);
       });
 
-####Browser Detection
+##Browser Detection
 - Mobile device useragent detection
  ---
      function detectBrowser() {
@@ -193,7 +193,7 @@
     console.log(a6.company);
 
 
-####JavaScript Namespacing function
+##JavaScript Namespacing function
 ---
     var Configurator = Configurator || (function() {
 
@@ -215,7 +215,7 @@
     //Call the module:
     Configurator.start();
 
-####JavaScript OO with ES6
+##JavaScript OO with ES6
 ---
     'use strict';
 
@@ -234,7 +234,7 @@
 
     //babel es6-compile.js --out-file es6.js
 
-####jQuery $.when().done() callback
+##jQuery $.when().done() callback
 ---
       $('.hamburger').on('click', function(){
 
@@ -255,7 +255,7 @@
 
       });
 
-####jQuery $.promise().done() callback
+##jQuery $.promise().done() callback
  ---
      $( "button" ).on( "click", function() {
       $( "p" ).append( "Started..." );
@@ -269,7 +269,7 @@
       });
     });
 
-####jQuery in view
+##jQuery in view
 ---
     jQuery(document).ready(function($) {
     var s = $("html.desktop .release");
@@ -302,7 +302,7 @@
     changeOpacity();
     });
 
-####Return array/object of keys in JS
+##Return array/object of keys in JS
 - return an array of objects according to key, value, or key and value matching
 ---
 
@@ -353,7 +353,7 @@
         }
         return objects;
     }
-####Merge two Objects in JS
+##Merge two Objects in JS
 - Merges two (or more) objects, giving the last one precedence
 ---
     function merge(target, source) {
@@ -374,7 +374,7 @@
               }         
               return target; };
 
-####Smooth Scroll with jQuery
+##Smooth Scroll with jQuery
 ---
     var smoothScroll = function() {
 
@@ -408,7 +408,7 @@
 
        });
 
-####Useragent with JS
+##Useragent with JS
 ---
     function getInternetExplorerVersion(){
     var rv = -1;
@@ -426,7 +426,7 @@
         $('body').addClass('ie11');
     };
 
-####Useragent test with Modernizr
+##Useragent test with Modernizr
 ---
     //Add Modernizr test
     Modernizr.addTest('iOS6', function() {
@@ -438,7 +438,7 @@
          nope: …,
     }]);
 
-####HTML5 Video jQuery Play/Pause
+##HTML5 Video jQuery Play/Pause
 - When custom play button clicked, alternate play/pause on hover
 ---
     $('.video .play-button#play').on('click', function(e) {
@@ -479,7 +479,7 @@
 
         });
     }
-####Youtube API
+##Youtube API
 - [Play button with youtube](https://css-tricks.com/play-button-youtube-and-vimeo-api/)
 - [Youtube google dev](https://developers.google.com/youtube/player_parameters?hl=en)
 ---
@@ -524,7 +524,7 @@
         before.parentNode.insertBefore(s, before);
       })();
 
-####Touch Events with jQuery
+##Touch Events with jQuery
 ---
       $('obj').bind('touchstart', function(e){
 
