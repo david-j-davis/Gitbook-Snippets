@@ -172,7 +172,7 @@
       alert(counter1.value()); // Alerts 2
       alert(counter2.value()); // Alerts 0
 
-####JavaScript OO Prototype
+##JavaScript OO Prototype
 * The first thing to put in every JavaScript file is the "use strict" declaration.
 * To create an object definition, you define a constructor function.
 * JavaScript is a little different, but this constructor function works a bit like a class.
