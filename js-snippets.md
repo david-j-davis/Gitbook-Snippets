@@ -120,7 +120,7 @@
       });
 
 ####Browser Detection
-**Mobile device useragent detection**
+- Mobile device useragent detection
  ---
      function detectBrowser() {
         var useragent = navigator.userAgent;
@@ -143,7 +143,7 @@
     });
 
 ####JavaScript OO closure function
-**A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.**
+- A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
 ---
 
       var makeCounter = function() {
@@ -255,7 +255,7 @@
 
       });
 
- ####jQuery $.promise().done() callback
+####jQuery $.promise().done() callback
  ---
      $( "button" ).on( "click", function() {
       $( "p" ).append( "Started..." );
@@ -303,7 +303,7 @@
     });
 
 ####Return array/object of keys in JS
-**return an array of objects according to key, value, or key and value matching**
+- return an array of objects according to key, value, or key and value matching
 ---
 
     function getObjects(obj, key, val) {
@@ -354,7 +354,7 @@
         return objects;
     }
 ####Merge two Objects in JS
-**Merges two (or more) objects, giving the last one precedence**
+- Merges two (or more) objects, giving the last one precedence
 ---
     function merge(target, source) {
       if ( typeof target !== 'object' ) {         
@@ -439,7 +439,7 @@
     }]);
 
 ####HTML5 Video jQuery Play/Pause
-**When custom play button clicked, alternate play/pause on hover**
+- When custom play button clicked, alternate play/pause on hover
 ---
     $('.video .play-button#play').on('click', function(e) {
         e.preventDefault();
@@ -480,8 +480,8 @@
         });
     }
 ####Youtube API
-[Play button with youtube](https://css-tricks.com/play-button-youtube-and-vimeo-api/)
-[Youtube google dev](https://developers.google.com/youtube/player_parameters?hl=en)
+- [Play button with youtube](https://css-tricks.com/play-button-youtube-and-vimeo-api/)
+- [Youtube google dev](https://developers.google.com/youtube/player_parameters?hl=en)
 ---
 
 
