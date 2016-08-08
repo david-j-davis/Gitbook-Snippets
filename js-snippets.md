@@ -120,7 +120,7 @@
       });
 
 ##Browser Detection
-Mobile device useragent detection
+ Mobile device useragent detection
  ---
      function detectBrowser() {
         var useragent = navigator.userAgent;
@@ -143,7 +143,7 @@ Mobile device useragent detection
     });
 
 ####JavaScript OO closure function
-A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
+ A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
 ---
 
       var makeCounter = function() {
@@ -303,7 +303,7 @@ A closure is a special kind of object that combines two things: a function, and 
     });
 
 ##Return array/object of keys in JS
-Return an array of objects according to key, value, or key and value matching
+ Return an array of objects according to key, value, or key and value matching
 ---
 
     function getObjects(obj, key, val) {
@@ -354,7 +354,7 @@ Return an array of objects according to key, value, or key and value matching
         return objects;
     }
 ##Merge two Objects in JS
-Merges two (or more) objects, giving the last one precedence
+ Merges two (or more) objects, giving the last one precedence
 ---
     function merge(target, source) {
       if ( typeof target !== 'object' ) {         
@@ -439,7 +439,7 @@ Merges two (or more) objects, giving the last one precedence
     }]);
 
 ##HTML5 Video jQuery Play/Pause
-When custom play button clicked, alternate play/pause on hover
+ When custom play button clicked, alternate play/pause on hover
 ---
     $('.video .play-button#play').on('click', function(e) {
         e.preventDefault();
