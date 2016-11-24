@@ -1,10 +1,21 @@
 # JS Snippets
 ---
-##Javascript Best Practices
+##Javascript Notes &amp; Best Practices
 - Keep global variables to a min. because they are stored in memory
 - You can call functions before they are declared because JavaScript is read before anything executes except when using function expressions- in which case you cannot call them before they are declared.
 - use ‘use strict’, especially with es6
 - Arrays can contain objects and vice versa
+
+##Touch Events with jQuery
+---
+      $('obj').bind('touchstart', function(e){
+
+      });
+
+      or
+
+      $('obj').bind('touchstart mousedown', function(e){
+      });
 
 ##AJAX jQuery Example
 ---
@@ -119,8 +130,7 @@
           console.log(data);
       });
 
-##Browser Detection
-######Mobile device useragent detection
+##Mobile device useragent detection
  ---
      function detectBrowser() {
         var useragent = navigator.userAgent;
@@ -523,14 +533,3 @@
         var before = document.getElementsByTagName("script")[0];
         before.parentNode.insertBefore(s, before);
       })();
-
-##Touch Events with jQuery
----
-      $('obj').bind('touchstart', function(e){
-
-      });
-
-      or
-
-      $('obj').bind('touchstart mousedown', function(e){
-      });
