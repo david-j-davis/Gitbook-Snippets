@@ -1,11 +1,38 @@
 # JS Snippets
 ---
 ##Javascript Notes &amp; Best Practices
-- Keep global variables to a min. because they are stored in memory
+- Keep global variables to a minimum because they are stored in memory
 - You can call functions before they are declared because JavaScript is read before anything executes except when using function expressions- in which case you cannot call them before they are declared.
 - use ‘use strict’, especially with es6
+- Global variables are a bad idea, instead use closures and the module pattern
+- Avoid using the line comment //. /* is much safer to use because it doesn’t cause errors when the line break is removed.
 - Arrays can contain objects and vice versa
+- Keep your code modularized and specialized.
+- Don't nest loops inside loops as that also means taking care of several iterator variables (i,j,k,l,m...). Instead try to do specialized functions
+- Loops can get slow, try to avoid large computations inside loops.
+- If you find yourself creating lots and lots of HTML in JavaScript, you might be doing something wrong.
 
+## Use .find(), the prefered method to use with data objects. Finds the match and exits the dataset.
+      var city = 'Detroit';
+      var place = placesData.find(function(item) {
+        return (item.State == city);
+      });
+####Doing the same thing with forEach (still iterates over entire dataset)
+      var city = 'Detroit';
+      placesData.forEach(function(place) {
+        if (place.State == city) {
+          var state = place.State;
+          return state;
+        }
+      });
+####Doing the same thing using a for loop (still iterates over entire dataset)
+      var city = 'Detroit';
+      for (var i = 0; i < placesData.length; i++) {
+        if (placesData[i].State == city) {
+          var state = placesData[i].State;
+          return state;
+        }
+      }
 ##Touch Events with jQuery
 ---
       $('obj').bind('touchstart', function(e){
@@ -153,7 +180,7 @@
       }
     });
 
-##Closure function
+##Module pattern with object literal return
 ######A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
 ---
 
@@ -183,27 +210,51 @@
       alert(counter1.value()); // Alerts 2
       alert(counter2.value()); // Alerts 0
 
-      ##JavaScript Namespacing function
-      ---
-          var Configurator = Configurator || (function() {
+##Namespacing module example
+####By putting these into a configuration object and making this one public we make maintenance easy and allow for customization.
+---
+      var Configurator = Configurator || (function() {
 
-            someOtherFunction() {
-              //some logic
-            }
+        var config = {
+          CSS:{
+             classes:{
+                current:'current',
+                scrollContainer:'scroll'
+             },
+             IDs:{
+                maincontainer:'carousel'
+             }
+          },
+          labels:{
+             previous:'back',
+             next:'next',
+             auto:'play'
+          },
+          settings:{
+             amount:5,
+             skin:'blue',
+             autoplay:false
+          },
+       };
 
-            function start() {
-              //some logic
-              someOtherFunction();
-            }
+      someOtherFunction() {
+        //some logic
+      }
 
-            // public face of the module
-            return {
-                start: start
-            };
-          })();
+      function start() {
+        //some logic
+        someOtherFunction();
+      }
 
-          //Call the module:
-          Configurator.start();
+      // public face of the module
+      return {
+          config: config,
+          start: start
+      };
+    })();
+
+    //Call the module:
+    Configurator.start();
 
 ##jQuery $.when().done() callback
 ---
@@ -332,7 +383,7 @@
 
     console.log(a6.make);
     console.log(a6.company);
-    
+
 ##Smooth Scroll with jQuery
 ---
     var smoothScroll = function() {
