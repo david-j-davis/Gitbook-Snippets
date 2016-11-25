@@ -93,6 +93,7 @@
       });
 
 ##AJAX JavaScript example with multiple get functions and Promise
+####The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.
 ---
       var terms = ['nodejs', 'iot', 'go'];
 
@@ -152,7 +153,7 @@
       }
     });
 
-####JavaScript OO closure function
+##Closure function
 ######A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
 ---
 
@@ -182,67 +183,27 @@
       alert(counter1.value()); // Alerts 2
       alert(counter2.value()); // Alerts 0
 
-##JavaScript OO Prototype
-- The first thing to put in every JavaScript file is the "use strict" declaration.
-- To create an object definition, you define a constructor function.
-- JavaScript is a little different, but this constructor function works a bit like a class.
-- Most web languages have classes that define the properties and methods available in an object.
-- You can create a method in a JavaScript object by adding a function to its prototype property.
----
+      ##JavaScript Namespacing function
+      ---
+          var Configurator = Configurator || (function() {
 
-    function Car(make) {
-    "use strict";
-    this.make = make;
-    }
+            someOtherFunction() {
+              //some logic
+            }
 
-    Car.prototype.company = 'audi';
+            function start() {
+              //some logic
+              someOtherFunction();
+            }
 
-    var a6 = new Car('A6');
+            // public face of the module
+            return {
+                start: start
+            };
+          })();
 
-    console.log(a6.make);
-    console.log(a6.company);
-
-
-##JavaScript Namespacing function
----
-    var Configurator = Configurator || (function() {
-
-      someOtherFunction() {
-        //some logic
-      }
-
-      function start() {
-        //some logic
-        someOtherFunction();
-      }
-
-      // public face of the module
-      return {
-          start: start
-      };
-    })();
-
-    //Call the module:
-    Configurator.start();
-
-##JavaScript OO with ES6
----
-    'use strict';
-
-    class Person {
-      constructor(name) {
-        this.name = name;
-      }
-      sayHello() {
-        console.log("hello from ", this.name);
-      }
-    }
-
-    var sarath = new Person('Sarath');
-
-    sarath.sayHello();
-
-    //babel es6-compile.js --out-file es6.js
+          //Call the module:
+          Configurator.start();
 
 ##jQuery $.when().done() callback
 ---
@@ -277,39 +238,6 @@
       $( "div" ).promise().done(function() {
         $( "p" ).append( " Finished! " );
       });
-    });
-
-##jQuery in view
----
-    jQuery(document).ready(function($) {
-    var s = $("html.desktop .release");
-    s.each(function() {
-            $(this).offset().top > $(window).scrollTop() + .75 * $(window).height() && $(this).addClass("hidden")
-        }), $(window).on("scroll", function() {
-            s.each(function() {
-                $(this).offset().top <= $(window).scrollTop() + .75 * $(window).height() && $(this).hasClass("hidden") && $(this).removeClass("hidden").addClass("move")
-            })
-        })
-    });
-
-      CSS (example):
-
-      .hidden {visibility:hidden}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
-
-      .move {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
-
----
-
-    //Scroll opacity function
-    var changeOpacity = function(){
-        var elements = $(‘.someDiv, .aSecondDiv');
-
-                var st = $(this).scrollTop();
-                elements.css({ 'opacity' : (1 - st/600) });
-
-    }
-    $(window).scroll(function(){
-    changeOpacity();
     });
 
 ##Return array/object of keys in JS
@@ -363,6 +291,7 @@
         }
         return objects;
     }
+
 ##Merge two Objects in JS
 ######Merges two (or more) objects, giving the last one precedence
 ---
@@ -384,6 +313,26 @@
               }         
               return target; };
 
+##OO Prototype Inheritance
+- The first thing to put in every JavaScript file is the "use strict" declaration.
+- To create an object definition, you define a constructor function.
+- JavaScript is a little different, but this constructor function works a bit like a class.
+- Most web languages have classes that define the properties and methods available in an object.
+- You can create a method in a JavaScript object by adding a function to its prototype property.
+---
+
+    function Car(make) {
+    "use strict";
+    this.make = make;
+    }
+
+    Car.prototype.company = 'audi';
+
+    var a6 = new Car('A6');
+
+    console.log(a6.make);
+    console.log(a6.company);
+    
 ##Smooth Scroll with jQuery
 ---
     var smoothScroll = function() {
@@ -418,7 +367,40 @@
 
        });
 
-##Useragent with JS
+       ##jQuery scroll in view function
+       ---
+           jQuery(document).ready(function($) {
+           var s = $("html.desktop .release");
+           s.each(function() {
+                   $(this).offset().top > $(window).scrollTop() + .75 * $(window).height() && $(this).addClass("hidden")
+               }), $(window).on("scroll", function() {
+                   s.each(function() {
+                       $(this).offset().top <= $(window).scrollTop() + .75 * $(window).height() && $(this).hasClass("hidden") && $(this).removeClass("hidden").addClass("move")
+                   })
+               })
+           });
+
+             CSS (example):
+
+             .hidden {visibility:hidden}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+
+             .move {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
+
+       ---
+
+           //Scroll opacity function
+           var changeOpacity = function(){
+               var elements = $(‘.someDiv, .aSecondDiv');
+
+                       var st = $(this).scrollTop();
+                       elements.css({ 'opacity' : (1 - st/600) });
+
+           }
+           $(window).scroll(function(){
+           changeOpacity();
+           });
+
+##Useragent test with JS
 ---
     function getInternetExplorerVersion(){
     var rv = -1;
