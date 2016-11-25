@@ -13,12 +13,14 @@
 - If you find yourself creating lots and lots of HTML in JavaScript, you might be doing something wrong.
 
 ## Use .find(), the prefered method to use with data objects. Finds the match and exits the dataset.
-      var city = 'Detroit';
+      var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
+      var city = 'Albuquerque, New Mexico';
       var place = placesData.find(function(item) {
         return (item.State == city);
       });
 ####Doing the same thing with forEach (still iterates over entire dataset)
-      var city = 'Detroit';
+      var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
+      var city = 'Albuquerque, New Mexico';
       placesData.forEach(function(place) {
         if (place.State == city) {
           var state = place.State;
@@ -26,7 +28,8 @@
         }
       });
 ####Doing the same thing using a for loop (still iterates over entire dataset)
-      var city = 'Detroit';
+      var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
+      var city = 'Albuquerque, New Mexico';
       for (var i = 0; i < placesData.length; i++) {
         if (placesData[i].State == city) {
           var state = placesData[i].State;
