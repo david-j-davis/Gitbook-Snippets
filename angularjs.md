@@ -1,6 +1,15 @@
 # Angular JS Snippets
 ---
+##routeProvider Example:
 
+      var app = angular.module('dabbble', []);
+
+      app.config(function ($routeProvider){
+        $routeProvider
+        .when("/blog/:id", {controller:"BlogCtrl", templateUrl: "partials/blog.html" })
+        .when("/:category", {controller:"CategoryListCtrl", templateUrl: "partials/category_list.html" })
+        .otherwise({redirectTo: "/famous"});
+      });
 ##Pass scope from one controller to the next
 ####Best way to accomplish this is through rootScope dependency. Live example:[click here to view codepen](http://codepen.io/david-j-davis/pen/ZBJGdb)
 
