@@ -1,37 +1,106 @@
 # HTML5
 ---
-Example:
+Attrubutes in the followng page are taken from [w3schools][1html].
 
-    <video autoplay loop poster="polina.jpg" class="bgvid">
-    <source src="polina.webm" type="video/webm">
-    <source src="polina.mp4" type="video/mp4">
-    </video>
+| Tag  | Description                                                                |
+|---|-------------------------------------------------------------------------------------------|
+| article  | Defines an article in the document                                             |
+| aside  | Defines content aside from the page content                                               |
+| bdi  | Defines a part of text that might be formatted in a different direction from other text   |
+| details  | Defines additional details that the user can view or hide                                 |
+| dialog  | Defines a dialog box or window                                                            |
+| figcaption  | Defines a caption for a,element                                                           |
+| figure  | Defines self-contained content, like illustrations, diagrams, photos, code listings, etc. |
+| footer  | Defines a footer for the document or a section                                            |
+| header  | Defines a header for the document or a section                                            |
+| main  | Defines the main content of a document                                                    |
+| mark | Defines marked or highlighted text                                                        |
+| menuitem  | Defines a command/menu item that the user can invoke from a popup menu                    |
+| meter  | Defines a scalar measurement within a known range (a gauge)                               |
+| nav  | Defines navigation links in the document                                                  |
+| progress  | Defines the progress of a task                                                            |
+| rp  | Defines what to show in browsers that do not support ruby annotations                     |
+| rt  | Defines an explanation/pronunciation of characters (for East Asian typography)            |
+| ruby  | Defines a ruby annotation (for East Asian typography)                                     |
+| section  | Defines a section in the document                                                         |
+| summary  | Defines a visible heading for a <details> element                                         |
+| time  | Defines a date/time                                                                       |
+| wbr  | Defines a possible line-break                                                             |
 
-    video.bgvid {
-    position: fixed; right: 0; bottom: 0;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto; z-index: -100;
-    background: url(polina.jpg) no-repeat;
-    background-size: cover;
-    }
+####Example
 
-    <!--[if lt IE 9]>
-    <script>
-    document.createElement('video');
-    </script>
-    <![endif]-->
-
-And, inside your CSS, a declaration that allows IE to understand that this is a block-level element:
-
-     video { display: block; }
-     
-With these in place, IE8 can at least style the <video> element with a background image.
-
-While it is possible to feature-detect support for video autoplay with JavaScript (a technique I will cover in a future article), the easiest solution is to use a media query that switches off the video entirely on smaller screens, substituting the placeholder image in the background. To the existing CSS, add:
-
-    @media screen and (max-device-width: 800px) {
-    html { background: url(polina.jpg) #000 no-repeat center center fixed;}
-    .bgvid { display: none; }
-    }
+{% tonic %}
+<section>
+  <h1>WWF</h1>
+  <p>The World Wide Fund for Nature (WWF) is....</p>
+</section>
+{% endtonic %}
 
 
+###New Input Types
+* color
+* date
+* datetime
+* datetime-local
+* email
+* month
+* number
+* range
+* search
+* tel
+* time
+* url
+* week
+
+###New Input Attributes
+
+* autocomplete
+* autofocus
+* form
+* formaction
+* formenctype
+* formmethod
+* formnovalidate
+* formtarget
+* height and width
+* list
+* min and max
+* multiple
+* pattern (regexp)
+* placeholder
+* required
+* step
+
+###New Form Elements
+
+| Tag  | Description                                                                |
+|---|-------------------------------------------------------------------------------------------|
+| datalist | Defines pre-defined options for input controls                         |
+| keygen  | Defines a key-pair generator field (for forms)                        |
+| output  | Defines the result of a calculation  |
+
+###HTML5 - New Attribute Syntax
+
+| Type |	Example |
+|------|----------|
+| Empty | <input type="text" value="John" disabled> |
+| Unquoted | <input type="text" value=John> |
+| Double-quoted | <input type="text" value="John Doe"> |
+| Single-quoted | <input type="text" value='John Doe'> |
+
+###HTML5 - HTML5 Graphics
+
+| Type |	Example |
+|------|----------|
+| canvas | Draw graphics, on the fly, via scripting (usually JavaScript) |
+| svg | Draw scalable vector graphics |
+
+##New Media Elements
+
+| Type |	Example |
+|------|----------|
+| audio | Defines sound content |
+| embed | Defines containers for external applications (like plug-ins) |
+| source | Defines sources for <video> and <audio>
+| track	 | Defines tracks for <video> and <audio> |
+| video | Defines video or movie content |
