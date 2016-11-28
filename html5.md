@@ -29,7 +29,7 @@ Attrubutes in the followng page are taken from [w3schools][1].
 
 ####Example HTML5 Tag
 
-{% tonic %}
+{% tonic readOnly=true %}
 <section>
   <h1>WWF</h1>
   <p>The World Wide Fund for Nature (WWF) is....</p>
