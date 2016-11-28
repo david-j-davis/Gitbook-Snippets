@@ -16,5 +16,5 @@
 * [RegExp](regexp.md)
 * [SVGs](svg.md)
 * [How to SSH to github](SSH.md)
-* Glossary
+* [Glossary](GLOSSARY.md)
 
