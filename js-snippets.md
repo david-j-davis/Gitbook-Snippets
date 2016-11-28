@@ -18,6 +18,13 @@
       var place = placesData.find(function(item) {
         return (item.State == city);
       });
+{% tonic %}
+var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
+var city = 'Albuquerque, New Mexico';
+var place = placesData.find(function(item) {
+  return (item.State == city);
+});
+{% endtonic %}
 ####Doing the same thing with forEach (still iterates over entire dataset)
       var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
       var city = 'Albuquerque, New Mexico';
