@@ -1,10 +1,51 @@
 # JS Snippets
 ---
-##Javascript Best Practices
-- Keep global variables to a min. because they are stored in memory
+##Javascript Notes &amp; Best Practices
+- Keep global variables to a minimum because they are stored in memory
 - You can call functions before they are declared because JavaScript is read before anything executes except when using function expressions- in which case you cannot call them before they are declared.
 - use ‘use strict’, especially with es6
+- Global variables are a bad idea, instead use closures and the module pattern
+- Avoid using the line comment //. /* is much safer to use because it doesn’t cause errors when the line break is removed.
 - Arrays can contain objects and vice versa
+- Keep your code modularized and specialized.
+- Don't nest loops inside loops as that also means taking care of several iterator variables (i,j,k,l,m...). Instead try to do specialized functions
+- Loops can get slow, try to avoid large computations inside loops.
+- If you find yourself creating lots and lots of HTML in JavaScript, you might be doing something wrong.
+
+## Use .find(), the prefered method to use with data objects. Finds the match and exits the dataset.
+      var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
+      var city = 'Albuquerque, New Mexico';
+      var place = placesData.find(function(item) {
+        return (item.State == city);
+      });
+####Doing the same thing with forEach (still iterates over entire dataset)
+      var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
+      var city = 'Albuquerque, New Mexico';
+      placesData.forEach(function(place) {
+        if (place.State == city) {
+          var state = place.State;
+          return state;
+        }
+      });
+####Doing the same thing using a for loop (still iterates over entire dataset)
+      var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
+      var city = 'Albuquerque, New Mexico';
+      for (var i = 0; i < placesData.length; i++) {
+        if (placesData[i].State == city) {
+          var state = placesData[i].State;
+          return state;
+        }
+      }
+##Touch Events with jQuery
+---
+      $('obj').bind('touchstart', function(e){
+
+      });
+
+      or
+
+      $('obj').bind('touchstart mousedown', function(e){
+      });
 
 ##AJAX jQuery Example
 ---
@@ -82,6 +123,7 @@
       });
 
 ##AJAX JavaScript example with multiple get functions and Promise
+####The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.
 ---
       var terms = ['nodejs', 'iot', 'go'];
 
@@ -119,8 +161,7 @@
           console.log(data);
       });
 
-##Browser Detection
-######Mobile device useragent detection
+##Mobile device useragent detection
  ---
      function detectBrowser() {
         var useragent = navigator.userAgent;
@@ -142,7 +183,7 @@
       }
     });
 
-####JavaScript OO closure function
+##Module pattern with object literal return
 ######A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
 ---
 
@@ -172,30 +213,32 @@
       alert(counter1.value()); // Alerts 2
       alert(counter2.value()); // Alerts 0
 
-##JavaScript OO Prototype
-- The first thing to put in every JavaScript file is the "use strict" declaration.
-- To create an object definition, you define a constructor function.
-- JavaScript is a little different, but this constructor function works a bit like a class.
-- Most web languages have classes that define the properties and methods available in an object.
-- You can create a method in a JavaScript object by adding a function to its prototype property.
+##Namespacing module example
+####By putting these into a configuration object and making this one public we make maintenance easy and allow for customization.
 ---
+      var Configurator = Configurator || (function() {
 
-    function Car(make) {
-    "use strict";
-    this.make = make;
-    }
-
-    Car.prototype.company = 'audi';
-
-    var a6 = new Car('A6');
-
-    console.log(a6.make);
-    console.log(a6.company);
-
-
-##JavaScript Namespacing function
----
-    var Configurator = Configurator || (function() {
+        var config = {
+          CSS:{
+             classes:{
+                current:'current',
+                scrollContainer:'scroll'
+             },
+             IDs:{
+                maincontainer:'carousel'
+             }
+          },
+          labels:{
+             previous:'back',
+             next:'next',
+             auto:'play'
+          },
+          settings:{
+             amount:5,
+             skin:'blue',
+             autoplay:false
+          },
+       };
 
       someOtherFunction() {
         //some logic
@@ -208,31 +251,13 @@
 
       // public face of the module
       return {
+          config: config,
           start: start
       };
     })();
 
     //Call the module:
     Configurator.start();
-
-##JavaScript OO with ES6
----
-    'use strict';
-
-    class Person {
-      constructor(name) {
-        this.name = name;
-      }
-      sayHello() {
-        console.log("hello from ", this.name);
-      }
-    }
-
-    var sarath = new Person('Sarath');
-
-    sarath.sayHello();
-
-    //babel es6-compile.js --out-file es6.js
 
 ##jQuery $.when().done() callback
 ---
@@ -267,39 +292,6 @@
       $( "div" ).promise().done(function() {
         $( "p" ).append( " Finished! " );
       });
-    });
-
-##jQuery in view
----
-    jQuery(document).ready(function($) {
-    var s = $("html.desktop .release");
-    s.each(function() {
-            $(this).offset().top > $(window).scrollTop() + .75 * $(window).height() && $(this).addClass("hidden")
-        }), $(window).on("scroll", function() {
-            s.each(function() {
-                $(this).offset().top <= $(window).scrollTop() + .75 * $(window).height() && $(this).hasClass("hidden") && $(this).removeClass("hidden").addClass("move")
-            })
-        })
-    });
-
-      CSS (example):
-
-      .hidden {visibility:hidden}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
-
-      .move {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
-
----
-
-    //Scroll opacity function
-    var changeOpacity = function(){
-        var elements = $(‘.someDiv, .aSecondDiv');
-
-                var st = $(this).scrollTop();
-                elements.css({ 'opacity' : (1 - st/600) });
-
-    }
-    $(window).scroll(function(){
-    changeOpacity();
     });
 
 ##Return array/object of keys in JS
@@ -353,6 +345,7 @@
         }
         return objects;
     }
+
 ##Merge two Objects in JS
 ######Merges two (or more) objects, giving the last one precedence
 ---
@@ -373,6 +366,26 @@
               merge(target, arguments[a]);     
               }         
               return target; };
+
+##OO Prototype Inheritance
+- The first thing to put in every JavaScript file is the "use strict" declaration.
+- To create an object definition, you define a constructor function.
+- JavaScript is a little different, but this constructor function works a bit like a class.
+- Most web languages have classes that define the properties and methods available in an object.
+- You can create a method in a JavaScript object by adding a function to its prototype property.
+---
+
+    function Car(make) {
+    "use strict";
+    this.make = make;
+    }
+
+    Car.prototype.company = 'audi';
+
+    var a6 = new Car('A6');
+
+    console.log(a6.make);
+    console.log(a6.company);
 
 ##Smooth Scroll with jQuery
 ---
@@ -408,7 +421,40 @@
 
        });
 
-##Useragent with JS
+       ##jQuery scroll in view function
+       ---
+           jQuery(document).ready(function($) {
+           var s = $("html.desktop .release");
+           s.each(function() {
+                   $(this).offset().top > $(window).scrollTop() + .75 * $(window).height() && $(this).addClass("hidden")
+               }), $(window).on("scroll", function() {
+                   s.each(function() {
+                       $(this).offset().top <= $(window).scrollTop() + .75 * $(window).height() && $(this).hasClass("hidden") && $(this).removeClass("hidden").addClass("move")
+                   })
+               })
+           });
+
+             CSS (example):
+
+             .hidden {visibility:hidden}@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+
+             .move {-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
+
+       ---
+
+           //Scroll opacity function
+           var changeOpacity = function(){
+               var elements = $(‘.someDiv, .aSecondDiv');
+
+                       var st = $(this).scrollTop();
+                       elements.css({ 'opacity' : (1 - st/600) });
+
+           }
+           $(window).scroll(function(){
+           changeOpacity();
+           });
+
+##Useragent test with JS
 ---
     function getInternetExplorerVersion(){
     var rv = -1;
@@ -523,14 +569,3 @@
         var before = document.getElementsByTagName("script")[0];
         before.parentNode.insertBefore(s, before);
       })();
-
-##Touch Events with jQuery
----
-      $('obj').bind('touchstart', function(e){
-
-      });
-
-      or
-
-      $('obj').bind('touchstart mousedown', function(e){
-      });
