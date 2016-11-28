@@ -15,6 +15,6 @@
 * [Git & Github](git-n-github.md)
 * [RegExp](regexp.md)
 * [SVGs](svg.md)
-* [How to SSH to github](SSH.md)
 * [Glossary](GLOSSARY.md)
+* [How to SSH to github](SSH.md)
 
