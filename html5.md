@@ -1,8 +1,8 @@
 # HTML5
 ---
+Attrubutes in the followng page are taken from [w3schools][1html].
 
-
-|   | Tag	Description                                                                |
+| Tag  | Description                                                                |
 |---|-------------------------------------------------------------------------------------------|
 | <article>  | Defines an article in the document                                             |
 | <aside>  | Defines content aside from the page content                                               |
@@ -27,4 +27,71 @@
 | <time>  | Defines a date/time                                                                       |
 | <wbr>  | Defines a possible line-break                                                             |
 
-* Table taken from [http://www.w3schools.com/html/html5_new_elements.asp](http://www.w3schools.com/html/html5_new_elements.asp)
+
+###New Input Types
+* color
+* date
+* datetime
+* datetime-local
+* email
+* month
+* number
+* range
+* search
+* tel
+* time
+* url
+* week
+
+###New Input Attributes
+
+* autocomplete
+* autofocus
+* form
+* formaction
+* formenctype
+* formmethod
+* formnovalidate
+* formtarget
+* height and width
+* list
+* min and max
+* multiple
+* pattern (regexp)
+* placeholder
+* required
+* step
+
+###New Form Elements
+
+| Tag  | Description                                                                |
+|---|-------------------------------------------------------------------------------------------|
+| <datalist> | Defines pre-defined options for input controls                         |
+| <keygen>  | Defines a key-pair generator field (for forms)                        |
+| <output>  | Defines the result of a calculation  |
+
+###HTML5 - New Attribute Syntax
+
+| Type |	Example |
+|------|----------|
+| Empty | <input type="text" value="John" disabled> |
+| Unquoted | <input type="text" value=John> |
+| Double-quoted | <input type="text" value="John Doe"> |
+| Single-quoted | <input type="text" value='John Doe'> |
+
+###HTML5 - HTML5 Graphics
+
+| Type |	Example |
+|------|----------|
+| <canvas> | Draw graphics, on the fly, via scripting (usually JavaScript) |
+| <svg> | Draw scalable vector graphics |
+
+##New Media Elements
+
+| Type |	Example |
+|------|----------|
+| <audio> | Defines sound content |
+| <embed> | Defines containers for external applications (like plug-ins) |
+| <source> | Defines sources for <video> and <audio>
+| <track>	 | Defines tracks for <video> and <audio> |
+| <video> | Defines video or movie content |
