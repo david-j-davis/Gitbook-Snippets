@@ -18,6 +18,8 @@
       var place = placesData.find(function(item) {
         return (item.State == city);
       });
+      
+####Live Example
 {% tonic %}
 var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
 var city = 'Albuquerque, New Mexico';
@@ -123,7 +125,7 @@ var place = placesData.find(function(item) {
       get('https://api.github.com/search/repositories?q=nodejs', function (err, data) {
           if (err) console.log('error, xhr: ', xhr);
           else console.log(data);
-      }); // 63342, 3000
+      });
       get('https://api.github.com/search/repositories?q=iot', function (err, data) {
           if (err) console.log('error, xhr: ', xhr);
           else console.log(data);
@@ -132,7 +134,7 @@ var place = placesData.find(function(item) {
 ##AJAX JavaScript example with multiple get functions and Promise
 ####The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.
 ---
-      var terms = ['nodejs', 'iot', 'go'];
+      var terms = ['Brainf**k', 'Velato', 'Ook!'];
 
       function get(url, callback) {
           var xhr = new XMLHttpRequest();
@@ -167,7 +169,44 @@ var place = placesData.find(function(item) {
       Promise.all(promises).then(function (data) {
           console.log(data);
       });
+####Live Example
+{% tonic %}
+var terms = ['Brainf**k', 'Velato', 'Ook!'];
 
+function get(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url);
+    xhr.addEventListener('readystatechange', function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log('successful ... should call callback ... ');
+                callback(null, JSON.parse(xhr.responseText));
+            } else {
+                console.log('error ... callback with error data ... ');
+                callback(xhr, null);
+            }
+        }
+    });
+    xhr.send();
+}
+
+function getPromise(url) {
+    return new Promise(function (resolve, reject) {
+        get(url, function (err, result) {
+            if (err) reject(err);
+            else resolve(result);
+        });
+    });
+}
+
+var promises = terms.map(function (term) {
+     return getPromise('https://api.github.com/search/repositories?q=' + term);
+});
+
+Promise.all(promises).then(function (data) {
+    console.log(data);
+});
+{% endtonic %}
 ##Mobile device useragent detection
  ---
      function detectBrowser() {
