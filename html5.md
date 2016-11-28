@@ -1,6 +1,6 @@
 # HTML5
 ---
-Attrubutes in the followng page are taken from [w3schools][1html].
+Attrubutes in the followng page are taken from [w3schools][1].
 
 | Tag  | Description                                                                |
 |---|-------------------------------------------------------------------------------------------|
