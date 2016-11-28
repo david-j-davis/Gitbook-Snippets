@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+* [Summary](SUMMARY.md)
 * [JS Snippets](js-snippets.md)
 * [Angular JS Snippets](angularjs.md)
 * [PHP Snippets](php-snippets.md)
@@ -17,5 +18,4 @@
 * [How to SSH to github](SSH.md)
 * [SVGs](svg.md)
 * [Glossary](GLOSSARY.md)
-* [Summary](SUMMARY.md)
 
