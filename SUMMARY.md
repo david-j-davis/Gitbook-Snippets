@@ -17,4 +17,5 @@
 * [How to SSH to github](SSH.md)
 * [SVGs](svg.md)
 * [Glossary](GLOSSARY.md)
+* Summary
 
