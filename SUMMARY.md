@@ -14,7 +14,7 @@
 * [Nodejs](nodejs.md)
 * [Git & Github](git-n-github.md)
 * [RegExp](regexp.md)
+* [How to SSH to github](SSH.md)
 * [SVGs](svg.md)
 * [Glossary](GLOSSARY.md)
-* [How to SSH to github](SSH.md)
 
