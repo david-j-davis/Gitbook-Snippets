@@ -27,6 +27,15 @@ Attrubutes in the followng page are taken from [w3schools][1html].
 | time  | Defines a date/time                                                                       |
 | wbr  | Defines a possible line-break                                                             |
 
+####Example
+
+{% tonic %}
+<section>
+  <h1>WWF</h1>
+  <p>The World Wide Fund for Nature (WWF) is....</p>
+</section>
+{% endtonic %}
+
 
 ###New Input Types
 * color
