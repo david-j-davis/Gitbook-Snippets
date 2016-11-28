@@ -83,10 +83,10 @@ Attrubutes in the followng page are taken from [w3schools][1html].
 
 | Type |	Example |
 |------|----------|
-| Empty | <input type="text" value="John" disabled> |
-| Unquoted | <input type="text" value=John> |
-| Double-quoted | <input type="text" value="John Doe"> |
-| Single-quoted | <input type="text" value='John Doe'> |
+| Empty | ```<input type="text" value="John" disabled>``` |
+| Unquoted | ```<input type="text" value=John>``` |
+| Double-quoted | ```<input type="text" value="John Doe">``` |
+| Single-quoted | ```<input type="text" value='John Doe'>``` |
 
 ###HTML5 - HTML5 Graphics
 
@@ -101,6 +101,6 @@ Attrubutes in the followng page are taken from [w3schools][1html].
 |------|----------|
 | audio | Defines sound content |
 | embed | Defines containers for external applications (like plug-ins) |
-| source | Defines sources for <video> and <audio>
-| track	 | Defines tracks for <video> and <audio> |
+| source | Defines sources for ```<video>``` and ```<audio>```
+| track	 | Defines tracks for ```<video>``` and ```<audio>``` |
 | video | Defines video or movie content |
