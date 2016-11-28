@@ -27,7 +27,7 @@ Attrubutes in the followng page are taken from [w3schools][1html].
 | time  | Defines a date/time                                                                       |
 | wbr  | Defines a possible line-break                                                             |
 
-####Example
+####Example HTML5 Tag
 
 {% tonic %}
 <section>
