@@ -18,7 +18,7 @@
       var place = placesData.find(function(item) {
         return (item.State == city);
       });
-      
+
 ####Live Example
 {% tonic %}
 var placesData = [{"City":30,"State":"Albuquerque, New Mexico","Sum":504,"Population":557169,"PerCapita":"0.09%","Latitude":35.0853336,"Longitude":-106.6055534},{"City":47,"State":"Arlington, Texas","Sum":164,"Population":383204,"PerCapita":"0.04%","Latitude":32.735687,"Longitude":-97.1080656}];
@@ -256,9 +256,37 @@ Promise.all(promises).then(function (data) {
 
       counter1.increment();
       counter1.increment();
-      alert(counter1.value()); // Alerts 2
-      alert(counter2.value()); // Alerts 0
+      console.log(counter1.value()); // Alerts 2
+      console.log(counter2.value()); // Alerts 0
 
+####Live Example
+{% tonic %}
+var makeCounter = function() {
+  var privateCounter = 0;
+  function changeBy(val) {
+    privateCounter += val;
+  }
+  return {
+    increment: function() {
+      changeBy(1);
+    },
+    decrement: function() {
+      changeBy(-1);
+    },
+    value: function() {
+      return privateCounter;
+    }
+  }  
+};
+//save an instance of makeCounter() as seperate variables
+var counter1 = makeCounter();
+var counter2 = makeCounter();
+
+counter1.increment();
+counter1.increment();
+console.log(counter1.value()); // Alerts 2
+console.log(counter2.value()); // Alerts 0
+{% endtonic %}
 ##Namespacing module example
 ####By putting these into a configuration object and making this one public we make maintenance easy and allow for customization.
 ---
@@ -287,12 +315,14 @@ Promise.all(promises).then(function (data) {
        };
 
       someOtherFunction() {
-        //some logic
+        console.log('someOtherFunction was called. Let\'s console out the config object:' + config);
+        //some other logic
       }
 
       function start() {
-        //some logic
+        console.log('start function was called.')
         someOtherFunction();
+        //some other logic
       }
 
       // public face of the module
@@ -305,6 +335,53 @@ Promise.all(promises).then(function (data) {
     //Call the module:
     Configurator.start();
 
+####Live Example
+{% tonic %}
+var Configurator = Configurator || (function() {
+
+  var config = {
+    CSS:{
+       classes:{
+          current:'current',
+          scrollContainer:'scroll'
+       },
+       IDs:{
+          maincontainer:'carousel'
+       }
+    },
+    labels:{
+       previous:'back',
+       next:'next',
+       auto:'play'
+    },
+    settings:{
+       amount:5,
+       skin:'blue',
+       autoplay:false
+    },
+ };
+
+someOtherFunction() {
+  console.log('someOtherFunction was called. Let\'s console out the config object:' + config);
+  //some other logic
+}
+
+function start() {
+  console.log('start function was called.')
+  someOtherFunction();
+  //some other logic
+}
+
+// public face of the module
+return {
+    config: config,
+    start: start
+};
+})();
+
+//Call the module:
+Configurator.start();
+{% endtonic %}
 ##jQuery $.when().done() callback
 ---
       $('.hamburger').on('click', function(){
