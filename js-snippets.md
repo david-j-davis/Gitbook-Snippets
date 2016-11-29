@@ -130,9 +130,50 @@ var place = placesData.find(function(item) {
           if (err) console.log('error, xhr: ', xhr);
           else console.log(data);
       });
-
-##AJAX JavaScript example with multiple get functions and Promise
+      
+##Promises
 ####The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.
+
+      var calculatePromise = new Promise(function(resolve, reject) {
+        setTimeout(function(){
+          resolve(1 + 1);
+        }, 1000);
+      });
+
+      function addTwo(value) {
+        return value + 2;
+      }
+
+      function printFinalValue(nextValue) {
+       console.log("The final value is", nextValue);
+      }
+
+      calculatePromise
+        .then(addTwo)
+        .then(printFinalValue);
+
+####Live example
+{% tonic %}
+var calculatePromise = new Promise(function(resolve, reject) {
+  setTimeout(function(){
+    resolve(1 + 1);
+  }, 1000);
+});
+
+function addTwo(value) {
+  return value + 2;
+}
+
+function printFinalValue(nextValue) {
+ console.log("The final value is", nextValue);
+}
+
+calculatePromise
+  .then(addTwo)
+  .then(printFinalValue);
+{% endtonic %}
+
+##AJAX example with multiple get functions and Promise
 ---
       var terms = ['Brainf**k', 'Velato', 'Ook!'];
 
@@ -167,46 +208,9 @@ var place = placesData.find(function(item) {
       });
 
       Promise.all(promises).then(function (data) {
-          console.log(data);
-      });
-####Live Example
-{% tonic %}
-var terms = ['Brainf**k', 'Velato', 'Ook!'];
+        console.log(data);
+      }).catch(function(error) { console.log(error) });
 
-function get(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', url);
-    xhr.addEventListener('readystatechange', function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                console.log('successful ... should call callback ... ');
-                callback(null, JSON.parse(xhr.responseText));
-            } else {
-                console.log('error ... callback with error data ... ');
-                callback(xhr, null);
-            }
-        }
-    });
-    xhr.send();
-}
-
-function getPromise(url) {
-    return new Promise(function (resolve, reject) {
-        get(url, function (err, result) {
-            if (err) reject(err);
-            else resolve(result);
-        });
-    });
-}
-
-var promises = terms.map(function (term) {
-     return getPromise('https://api.github.com/search/repositories?q=' + term);
-});
-
-Promise.all(promises).then(function (data) {
-    console.log(data);
-});
-{% endtonic %}
 ##Mobile device useragent detection
  ---
      function detectBrowser() {
@@ -509,7 +513,20 @@ Configurator.start();
 
     console.log(a6.make);
     console.log(a6.company);
+####Live Example
+{% tonic %}
+function Car(make) {
+"use strict";
+this.make = make;
+}
 
+Car.prototype.company = 'audi';
+
+var a6 = new Car('A6');
+
+console.log(a6.make);
+console.log(a6.company);
+{% endtonic %}
 ##Smooth Scroll with jQuery
 ---
     var smoothScroll = function() {
