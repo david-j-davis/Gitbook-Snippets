@@ -104,3 +104,6 @@ Attrubutes in the followng page are taken from [w3schools][1].
 | source | Defines sources for ```<video>``` and ```<audio>```
 | track	 | Defines tracks for ```<video>``` and ```<audio>``` |
 | video | Defines video or movie content |
+
+####Footnotes
+[1]: http://www.w3schools.com/html/html5_new_elements.asp "HTML5 New Elements"
