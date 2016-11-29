@@ -1,4 +1,5 @@
-# Getting Started with Node.js [Adapted from Node Hero][1]
+# Getting Started with Node.js
+##[Adapted from Node Hero][1]
 ---
 
 ####Install Node.js
@@ -222,5 +223,4 @@ Unfortunately storing user data this way still has a couple of flaws:
 - If we're working with files, there is no easy way to access them in parallel (system-wide locks will prevent you from writing).
 - When we try to scale our application up, we cannot split files (you can, but it is way beyond the level of this tutorial) in between servers.
 
-####Footnotes
 [1]: https://blog.risingstack.com/node-hero-tutorial-getting-started-with-node-js/ "Node Hero - Getting Started with Node.js series"
