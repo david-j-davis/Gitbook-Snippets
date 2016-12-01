@@ -407,6 +407,7 @@ return {
 //Call the module:
 Configurator.start();
 {% endtonic %}
+
 ##jQuery $.when().done() callback
 ---
       $('.hamburger').on('click', function(){
