@@ -130,7 +130,7 @@ var place = placesData.find(function(item) {
           if (err) console.log('error, xhr: ', xhr);
           else console.log(data);
       });
-      
+
 ##Promises
 ####The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.
 
@@ -262,6 +262,27 @@ calculatePromise
       counter1.increment();
       console.log(counter1.value()); // Alerts 2
       console.log(counter2.value()); // Alerts 0
+
+####Another way to write the module pattern is with an immediately invoked anonymous function to utilize same variable
+      var awesomeNewModule = (function(){
+        var exports = {
+          foo: 5,
+          bar: 10
+        };
+
+        exports.helloMars = function() {
+          console.log("Hello Mars!");
+        };
+
+        exports.goodbye = function() {
+          console.log("Goodbye!");
+        };
+
+      return exports;
+
+      }());
+
+      console.log(awesomeNewModule.goodbye());
 
 ####Live Example
 {% tonic %}
