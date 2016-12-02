@@ -1,5 +1,21 @@
 # NPM
 ---
+##Best Practices
+[Reference](https://cdn.ampproject.org/c/blog.risingstack.com/nodejs-at-scale-npm-best-practices/amp/)
+
+* See current version of npm with ```npm version```
+* ```npm init --yes``` allows you to quick start a package.json file, but first set defaults: ```npm config set init.author.name YOUR_NAME``` and ```npm config set init.author.email YOUR_EMAIL```
+* Look up the health and popularity of certain modules with [npms.io](https://npms.io)
+* To visit the home page of modules do: ```npm home your_package_name```
+* To check issues with module do: ```npm bugs your_package_name```
+* If you want to check your package's repo do: ```npm repo your_package_name```
+* Save a module to your package.json with ```npm install your_package_name --save``` or ```npm install your_package_name --save-dev```
+* It’s possible to have different versions locally then on production, if in the meantime someone just released a new version. The problem will arise, when this new version has some bug which will affect your production system. To solve this issue, you may want to use ```npm shrinkwrap```
+* Check for outdated depencencies with ```npm outdated```
+* Don't install development depencencies in production
+* To install production dependencies only, run this ```npm install --production```. Alternatively you can set the NODE_ENV to production: ```NODE_ENV=production npm install```
+* When developing packages locally use ```npm link```
+
 ####Using npm instead of grunt/gulp
 [Reference](Reference: https://css-tricks.com/why-npm-scripts/)
 
