@@ -233,64 +233,140 @@ calculatePromise
       }
     });
 
-##Module pattern with object literal return
-######A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
----
+##[Module Pattern: Object Literal return][1]
+One of the easiest patterns is the same as we’ve declared above, the Object has no name declared locally, we just return an Object and that’s it
+ ---
 
-      var makeCounter = (function() {
-        var privateCounter = 0;
-        function changeBy(val) {
-          privateCounter += val;
-        }
+      var Module = (function () {
+
+      var privateMethod = function () {};
+
         return {
-          increment: function() {
-            changeBy(1);
+          publicMethodOne: function () {
+          // I can call `privateMethod()` you know...
           },
-          decrement: function() {
-            changeBy(-1);
+          publicMethodTwo: function () {
+
           },
-          value: function() {
-            return privateCounter;
+          publicMethodThree: function () {
+
           }
-        }  
-      }();
-
-      makeCounter.increment();
-      makeCounter.increment();
-
-      console.log(makeCounter.value()); // Alerts 2
-
-      //or
-      
-      //save an instance of makeCounter() as seperate variables
-      var counter = makeCounter;
-
-      counter.increment();
-      counter.increment();
-      console.log(counter.value()); // Alerts 2
-      console.log(counter.value()); // Alerts 0
-
-
-####Another way to write the module pattern is with an immediately invoked anonymous function to utilize same variable
-      var awesomeNewModule = (function(){
-        var exports = {
-          foo: 5,
-          bar: 10
         };
 
-        exports.helloMars = function() {
-          console.log("Hello Mars!");
+      })();
+
+      Module.publicMethodOne();
+      Module.publicMethodTwo();
+      Module.publicMethodThree();
+
+##[Module Pattern: Locally scoped Object Literal][2]
+Local scope means a variable/function declared inside a scope. It’s much easier to see what is public, because they’ll have a locally scoped namespace attached
+ ---
+      var Module = (function () {
+
+        // locally scoped Object
+        var myObject = {};
+
+        // declared with `var`, must be "private"
+        var privateMethod = function () {};
+
+        myObject.someMethod = function () {
+          // take it away Mr. Public Method
         };
 
-        exports.goodbye = function() {
-          console.log("Goodbye!");
+        return myObject;
+
+      })();
+##[Module Pattern: Stacked locally coped Object Literal][3]
+Pretty much identical as the previous example, but uses the “traditional” single Object Literal notation
+ ---
+      var Module = (function () {
+
+        var privateMethod = function () {};
+
+        var myObject = {
+          someMethod:  function () {
+
+          },
+          anotherMethod:  function () {
+
+          }
         };
 
-      return exports;
+        return myObject;
 
-      }());
+      })();
+##[Revealing Module Pattern][4]
+We reveal public pointers to methods inside the Module’s scope. You can clearly see and define which methods are shipped back to the Module.
+ ---
+      var Module = (function () {
 
-      console.log(awesomeNewModule.goodbye());
+        var privateMethod = function () {
+          // private
+        };
+
+        var someMethod = function () {
+          // public
+        };
+
+        var anotherMethod = function () {
+          // public
+        };
+
+        return {
+          someMethod: someMethod,
+          anotherMethod: anotherMethod
+        };
+
+      })();
+##[Augmenting Modules][5]
+Pass in our Module namespace, which gives us access to our Object to extend. notice I’ve passed in Module || {} into my second ModuleTwo, this is incase Module is undefined - we don’t want to cause errors now do we ;). What this does is instantiate a new Object, and bind our extension method to it, and return it.
+
+      var ModuleTwo = (function (Module) {
+
+          Module.extension = function () {
+               // another method!
+           };
+
+           return Module;
+
+
+      })(Module || {});
+
+{% tonic %}
+var Module = (function () {
+
+  var privateMethod = function () {
+    // private
+  };
+
+  var someMethod = function () {
+    // public
+  };
+
+  var anotherMethod = function () {
+    // public
+  };
+
+  return {
+    someMethod: someMethod,
+    anotherMethod: anotherMethod
+  };
+
+})();
+
+var ModuleTwo = (function (Module) {
+
+    Module.extension = function () {
+        // another method!
+    };
+
+    return Module;
+
+})(Module || {});
+
+console.log(Module);
+{% endtonic %}
 
 ####Live Example
 {% tonic %}
@@ -739,3 +815,8 @@ console.log(a6.company);
         var before = document.getElementsByTagName("script")[0];
         before.parentNode.insertBefore(s, before);
       })();
+[1]: https://toddmotto.com/mastering-the-module-pattern/#anonymous-object-literal-return
+[2]: https://toddmotto.com/mastering-the-module-pattern/#locally-scoped-object-literal
+[3]: https://toddmotto.com/mastering-the-module-pattern/#stacked-locally-scoped-object-literal
+[4]: https://toddmotto.com/mastering-the-module-pattern/#revealing-module-pattern
+[5]: https://toddmotto.com/mastering-the-module-pattern/#augmenting-modules
