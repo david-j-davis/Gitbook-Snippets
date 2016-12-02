@@ -237,7 +237,7 @@ calculatePromise
 ######A closure is a special kind of object that combines two things: a function, and the environment in which that function was created.
 ---
 
-      var makeCounter = function() {
+      var makeCounter = (function() {
         var privateCounter = 0;
         function changeBy(val) {
           privateCounter += val;
@@ -253,15 +253,23 @@ calculatePromise
             return privateCounter;
           }
         }  
-      };
-      //save an instance of makeCounter() as seperate variables
-      var counter1 = makeCounter();
-      var counter2 = makeCounter();
+      }();
 
-      counter1.increment();
-      counter1.increment();
-      console.log(counter1.value()); // Alerts 2
-      console.log(counter2.value()); // Alerts 0
+      makeCounter.increment();
+      makeCounter.increment();
+
+      console.log(makeCounter.value()); // Alerts 2
+
+      //or
+      
+      //save an instance of makeCounter() as seperate variables
+      var counter = makeCounter;
+
+      counter.increment();
+      counter.increment();
+      console.log(counter.value()); // Alerts 2
+      console.log(counter.value()); // Alerts 0
+
 
 ####Another way to write the module pattern is with an immediately invoked anonymous function to utilize same variable
       var awesomeNewModule = (function(){
