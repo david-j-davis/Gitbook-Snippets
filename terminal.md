@@ -1,5 +1,12 @@
 # Terminal
 ---
+##Bash Profile commands. Modify Bash profile with a MAC at ```~/.bash_profile```. For my bash profile take a look [here](https://gist.github.com/david-j-davis/e62bbb01d2caa0c29f3b45a8d25b1bd0)
+* ```compgen -c``` will list all the commands you could run.
+* ```compgen -a``` will list all the aliases you could run.
+* ```compgen -b``` will list all the built-ins you could run.
+* ```compgen -k``` will list all the keywords you could run.
+* ```compgen -A``` function will list all the functions you could run.
+* ```compgen -A``` function -abck will list all the above in one go.
 ####Atom.io shell commands
 atom . (opens folder)
 atom file.js (opens file)
@@ -62,4 +69,3 @@ Step Four:
 Check if you database was successfully imported
 Navigate to phpMyAdmin in a browser
 http://localhost:8888/MAMP/
-I hope this helps, please let me know if anyone has any errors, questions or comments.
