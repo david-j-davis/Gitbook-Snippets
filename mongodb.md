@@ -1,4 +1,5 @@
 ##Mongo Database Basics. As of Mongo version 3.4.1
+---
 * Install mongodb ```brew install mongodb```
 * make data directory ```sudo mkdir -p /data/db```
 * To get mongo dameon up and running ```sudo mongod```
