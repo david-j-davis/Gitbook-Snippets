@@ -2,7 +2,6 @@
 
 * [Introduction](README.md)
 * [Summary](SUMMARY.md)
-    * MongoDB
 * [JS Snippets](js-snippets.md)
 * [Angular JS Snippets](angularjs.md)
 * [PHP Snippets](php-snippets.md)
@@ -20,4 +19,3 @@
 * [SVGs](svg.md)
 * [Glossary](GLOSSARY.md)
 * [MongoDB](mongodb.md)
-
