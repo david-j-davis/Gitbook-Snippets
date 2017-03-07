@@ -14,7 +14,7 @@ Static:
 - Set global styles at the ```<td>``` level when possible
 - Don’t set any attributes on the ```<tr>```
 - IE renders image links with a border, include style ‘border:0px;'
-- Image hack if it doesn’t listen to ```valign=“top”```` or “bottom”, set a style on the associated ```<td```> to ```style="font-size:0px;line-height:0px;"```
+- Image hack if it doesn’t listen to valign=“top” or “bottom”, set a style on the associated ```<td```> to ```style="font-size:0px;line-height:0px;"```
 
 Responsive:
 
