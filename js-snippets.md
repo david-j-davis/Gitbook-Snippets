@@ -492,6 +492,220 @@ return {
 Configurator.start();
 {% endtonic %}
 
+##OO Prototype Inheritance. Adapted from [RisingStack][6]
+- To create an object definition, you define a constructor function.
+- JavaScript is a little different, but this constructor function works a bit like a class.
+- Most web languages have classes that define the properties and methods available in an object.
+- You can create a method in a JavaScript object by adding a function to its prototype property.
+---
+
+//Constructor
+var LivingEntity = function(location){
+this.x = location.x;
+this.y = location.y;
+this.z = location.z;
+};
+
+//New instance
+var dog = new LivingEntity({
+x: 5,
+y: 0,
+z: 1
+});
+
+//we can add a single anonymous function to the prototype chain!
+LivingEntity.prototype.makeSound = function(){
+console.log('meow');
+}
+
+//dog uses its prototype because it doesn't have makeSound as an attribute
+dog.makeSound(); //meow
+
+dog.makeSound = function(){
+console.log('woof');
+}
+
+//now dog has makeSound as an attribute, it will use that instead of it's prototype
+dog.makeSound(); //woof
+
+/*The Prototype Chain
+Every object has a prototype, including the prototype object. This "chain" goes all the way back until it reaches an object that has no prototype, usually Object's prototype. Prototype's version of "Inheritance" involves adding another link to the end of this prototype chain, as shown below.*/
+
+var Dragon = function(location){
+
+// <Function>.call is a method that executes the defined function,
+// but with the "this" variable pointing to the first argument,
+// and the rest of the arguments being arguments of the function
+// that is being "called". This essentially performs all of
+// LivingEntity's constructor logic on Dragon's "this".
+
+LivingEntity.call(this, location);
+//canFly is an attribute of the constructed object and not Dragon's prototype
+this.canFly = true;
+};
+
+// Object.create(object) creates an object with a prototype of the
+// passed in object. This example will return an object
+// with a prototype that has the "moveWest" and "makeSound" functions,
+// but not x, y, or z attributes.
+
+Dragon.prototype = Object.create(LivingEntity.prototype);
+
+// If we didn't reset the prototype's constructor
+// attribute, it would look like any Dragon objects
+// were constructed with a LivingEntity constructor
+
+Dragon.prototype.constructor = Dragon;
+
+// Now we can assign prototype attributes to Dragon without affecting
+// the prototype of LivingEntity.
+
+Dragon.prototype.fly = function(y){
+this.y += y;
+}
+
+var sparky = new Dragon({
+x: 0,
+y: 0,
+z: 0
+});
+
+
+####Live Example
+{% tonic %}
+//Constructor
+var LivingEntity = function(location){
+this.x = location.x;
+this.y = location.y;
+this.z = location.z;
+};
+
+//New instance
+var dog = new LivingEntity({
+x: 5,
+y: 0,
+z: 1
+});
+
+//we can add a single anonymous function to the prototype chain!
+LivingEntity.prototype.makeSound = function(){
+console.log('meow');
+}
+
+//dog uses its prototype because it doesn't have makeSound as an attribute
+dog.makeSound(); //meow
+
+dog.makeSound = function(){
+console.log('woof');
+}
+
+//now dog has makeSound as an attribute, it will use that instead of it's prototype
+dog.makeSound(); //woof
+
+/*The Prototype Chain
+Every object has a prototype, including the prototype object. This "chain" goes all the way back until it reaches an object that has no prototype, usually Object's prototype. Prototype's version of "Inheritance" involves adding another link to the end of this prototype chain, as shown below.*/
+
+var Dragon = function(location){
+
+// <Function>.call is a method that executes the defined function,
+// but with the "this" variable pointing to the first argument,
+// and the rest of the arguments being arguments of the function
+// that is being "called". This essentially performs all of
+// LivingEntity's constructor logic on Dragon's "this".
+
+LivingEntity.call(this, location);
+//canFly is an attribute of the constructed object and not Dragon's prototype
+this.canFly = true;
+};
+
+// Object.create(object) creates an object with a prototype of the
+// passed in object. This example will return an object
+// with a prototype that has the "moveWest" and "makeSound" functions,
+// but not x, y, or z attributes.
+
+Dragon.prototype = Object.create(LivingEntity.prototype);
+
+// If we didn't reset the prototype's constructor
+// attribute, it would look like any Dragon objects
+// were constructed with a LivingEntity constructor
+
+Dragon.prototype.constructor = Dragon;
+
+// Now we can assign prototype attributes to Dragon without affecting
+// the prototype of LivingEntity.
+
+Dragon.prototype.fly = function(y){
+this.y += y;
+}
+
+var sparky = new Dragon({
+x: 0,
+y: 0,
+z: 0
+});
+{% endtonic %}
+
+## OO Prototype Pattern (Real prototypal inheritance)
+**Object.create** creates an object which has a specified prototype and optionally contains specified properties as well (e.g Object.create( prototype, optionalDescriptorObjects )).
+
+    var myCar = {
+ 
+    name: "Ford Escort",
+   
+    drive: function () {
+      console.log( "Weeee. I'm driving!" );
+    },
+   
+    panic: function () {
+      console.log( "Wait. How do you stop this thing?" );
+    }
+   
+    };
+     
+    // Use Object.create to instantiate a new car
+    var yourCar = Object.create( myCar );
+     
+    // Now we can see that one is a prototype of the other
+    console.log( yourCar.name );
+
+**Object.create** also allows us to easily implement advanced concepts such as differential inheritance where objects are able to directly inherit from other objects. We saw earlier that Object.create allows us to initialise object properties using the second supplied argument. For example:
+
+    var vehicle = {
+      getModel: function () {
+        console.log( "The model of this vehicle is.." + this.model );
+      }
+    };
+     
+    var car = Object.create(vehicle, {
+     
+      "id": {
+        value: MY_GLOBAL.nextId(),
+        // writable:false, configurable:false by default
+        enumerable: true
+      },
+     
+      "model": {
+        value: "Ford",
+        enumerable: true
+      }
+     
+    });
+
+
+## The Factory Pattern
+The Factory pattern is another creational pattern concerned with the notion of creating objects. Where it differs from the other patterns in its category is that it doesn't explicitly require us use a constructor. Instead, a Factory can provide a generic interface for creating objects, where we can specify the type of factory object we wish to be created.
+
+**When to use a factory:**
+
+* When our object or component setup involves a high level of complexity
+* When we need to easily generate different instances of objects depending on the environment we are in
+* When we're working with many small objects or components that share the same properties
+* When composing objects with instances of other objects that need only satisfy an API contract (aka, duck typing) to work. This is useful for decoupling.
+
+**When not to use a factory:**
+
+When applied to the wrong type of problem, this pattern can introduce an unnecessarily great deal of complexity to an application. Unless providing an interface for object creation is a design goal for the library or framework we are writing, I would suggest sticking to explicit constructors to avoid the unnecessary overhead.
+
 ##jQuery $.when().done() callback
 ---
       $('.hamburger').on('click', function(){
@@ -600,158 +814,6 @@ Configurator.start();
               }         
               return target; };
 
-##OO Prototype Inheritance. Adapted from [RisingStack][6]
-- To create an object definition, you define a constructor function.
-- JavaScript is a little different, but this constructor function works a bit like a class.
-- Most web languages have classes that define the properties and methods available in an object.
-- You can create a method in a JavaScript object by adding a function to its prototype property.
----
-
-      //Constructor
-      var LivingEntity = function(location){  
-        this.x = location.x;
-        this.y = location.y;
-        this.z = location.z;
-      };
-
-      //New instance
-      var dog = new LivingEntity({  
-        x: 5,
-        y: 0,
-        z: 1
-      });
-
-      //we can add a single anonymous function to the prototype chain!
-      LivingEntity.prototype.makeSound = function(){  
-      console.log('meow');
-      }
-
-      //dog uses its prototype because it doesn't have makeSound as an attribute
-      dog.makeSound(); //meow
-
-      dog.makeSound = function(){  
-      console.log('woof');
-      }
-
-      //now dog has makeSound as an attribute, it will use that instead of it's prototype
-      dog.makeSound(); //woof  
-
-      /*The Prototype Chain
-      Every object has a prototype, including the prototype object. This "chain" goes all the way back until it reaches an object that has no prototype, usually Object's prototype. Prototype's version of "Inheritance" involves adding another link to the end of this prototype chain, as shown below.*/
-
-      var Dragon = function(location){  
-
-      // <Function>.call is a method that executes the defined function,
-      // but with the "this" variable pointing to the first argument,
-      // and the rest of the arguments being arguments of the function
-      // that is being "called". This essentially performs all of
-      // LivingEntity's constructor logic on Dragon's "this".
-
-      LivingEntity.call(this, location);
-      //canFly is an attribute of the constructed object and not Dragon's prototype
-      this.canFly = true;
-      };
-
-      // Object.create(object) creates an object with a prototype of the
-      // passed in object. This example will return an object
-      // with a prototype that has the "moveWest" and "makeSound" functions,
-      // but not x, y, or z attributes.
-
-      Dragon.prototype = Object.create(LivingEntity.prototype);
-
-      // If we didn't reset the prototype's constructor
-      // attribute, it would look like any Dragon objects
-      // were constructed with a LivingEntity constructor
-
-      Dragon.prototype.constructor = Dragon;
-
-      // Now we can assign prototype attributes to Dragon without affecting
-      // the prototype of LivingEntity.
-
-      Dragon.prototype.fly = function(y){  
-      this.y += y;
-      }
-
-      var sparky = new Dragon({  
-      x: 0,
-      y: 0,
-      z: 0
-      });
-
-
-####Live Example
-{% tonic %}
-//Constructor
-var LivingEntity = function(location){  
-  this.x = location.x;
-  this.y = location.y;
-  this.z = location.z;
-};
-
-//New instance
-var dog = new LivingEntity({  
-  x: 5,
-  y: 0,
-  z: 1
-});
-
-//we can add a single anonymous function to the prototype chain!
-LivingEntity.prototype.makeSound = function(){  
-console.log('meow');
-}
-
-//dog uses its prototype because it doesn't have makeSound as an attribute
-dog.makeSound(); //meow
-
-dog.makeSound = function(){  
-console.log('woof');
-}
-
-//now dog has makeSound as an attribute, it will use that instead of it's prototype
-dog.makeSound(); //woof  
-
-/*The Prototype Chain
-Every object has a prototype, including the prototype object. This "chain" goes all the way back until it reaches an object that has no prototype, usually Object's prototype. Prototype's version of "Inheritance" involves adding another link to the end of this prototype chain, as shown below.*/
-
-var Dragon = function(location){  
-
-// <Function>.call is a method that executes the defined function,
-// but with the "this" variable pointing to the first argument,
-// and the rest of the arguments being arguments of the function
-// that is being "called". This essentially performs all of
-// LivingEntity's constructor logic on Dragon's "this".
-
-LivingEntity.call(this, location);
-//canFly is an attribute of the constructed object and not Dragon's prototype
-this.canFly = true;
-};
-
-// Object.create(object) creates an object with a prototype of the
-// passed in object. This example will return an object
-// with a prototype that has the "moveWest" and "makeSound" functions,
-// but not x, y, or z attributes.
-
-Dragon.prototype = Object.create(LivingEntity.prototype);
-
-// If we didn't reset the prototype's constructor
-// attribute, it would look like any Dragon objects
-// were constructed with a LivingEntity constructor
-
-Dragon.prototype.constructor = Dragon;
-
-// Now we can assign prototype attributes to Dragon without affecting
-// the prototype of LivingEntity.
-
-Dragon.prototype.fly = function(y){  
-this.y += y;
-}
-
-var sparky = new Dragon({  
-x: 0,
-y: 0,
-z: 0
-});
-{% endtonic %}
 ##Smooth Scroll with jQuery
 ---
     var smoothScroll = function() {
