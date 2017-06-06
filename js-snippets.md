@@ -706,6 +706,87 @@ The Factory pattern is another creational pattern concerned with the notion of c
 
 When applied to the wrong type of problem, this pattern can introduce an unnecessarily great deal of complexity to an application. Unless providing an interface for object creation is a design goal for the library or framework we are writing, I would suggest sticking to explicit constructors to avoid the unnecessary overhead.
 
+## MVC For JavaScript Developers
+
+**Models** manage the data for an application. They are concerned with neither the user-interface nor presentation layers but instead represent unique forms of data that an application may require. When a model changes (e.g when it is updated), it will typically notify its observers (e.g views, a concept we will cover shortly) that a change has occurred so that they may react accordingly.
+
+When using models in real-world applications we generally also desire model persistence. Persistence allows us to edit and update models with the knowledge that its most recent state will be saved in either: memory, in a user's localStorage data-store or synchronized with a database. In addition, a model may also have multiple views observing it.
+
+*Older texts on MVC may also contain reference to a notion of models managing application **state**.In JavaScript applications state has a different connotation, typically referring to the current **"state"** i.e view or sub-view (with specific data) on a users screen at a fixed point. State is a topic which is regularly discussed when looking at Single-page applications, where the concept of state needs to be simulated.*
+
+**So to summarize, models are primarily concerned with business data**
+
+**Views** are a visual representation of models that present a filtered view of their current state. Whilst Smalltalk views are about painting and maintaining a bitmap, JavaScript views are about building and maintaining a DOM element.
+
+A view typically observes a model and is notified when the model changes, allowing the view to update itself accordingly. Design pattern literature commonly refers to views as "dumb" given that their knowledge of models and controllers in an application is limited.
+
+Users are able to interact with views and this includes the ability to read and edit (i.e get or set the attribute values in) models. As the view is the presentation layer, we generally present the ability to edit and update in a user-friendly fashion. For example, in the former photo gallery application we discussed earlier, model editing could be facilitated through an "edit' view where a user who has selected a specific photo could edit its meta-data.
+
+The actual task of updating the model falls to controllers (which we will be covering shortly).
+
+Let's explore views a little further using a vanilla JavaScript sample implementation. Below we can see a function that creates a single Photo view, consuming both a model instance and a controller instance.
+
+We define a render() utility within our view which is responsible for rendering the contents of the photoModel using a JavaScript templating engine (Underscore templating) and updating the contents of our view, referenced by photoEl.
+
+The photoModel then adds our render() callback as one of its subscribers so that through the Observer pattern we can trigger the view to update when the model changes.
+
+One may wonder where user-interaction comes into play here. When users click on any elements within the view, it's not the view's responsibility to know what to do next. It relies on a controller to make this decision for it. In our sample implementation, this is achieved by adding an event listener to photoEl which will delegate handling the click behavior back to the controller, passing the model information along with it in case it's needed.
+
+The benefit of this architecture is that each component plays its own separate role in making the application function as needed.
+
+    var buildPhotoView = function ( photoModel, photoController ) {
+     
+      var base = document.createElement( "div" ),
+          photoEl = document.createElement( "div" );
+     
+      base.appendChild(photoEl);
+     
+      var render = function () {
+              // We use a templating library such as Underscore
+              // templating which generates the HTML for our
+              // photo entry
+              photoEl.innerHTML = _.template( "#photoTemplate", {
+                  src: photoModel.getSrc()
+              });
+          };
+     
+      photoModel.addSubscriber( render );
+     
+      photoEl.addEventListener( "click", function () {
+        photoController.handleEvent( "click", photoModel );
+      });
+     
+      var show = function () {
+        photoEl.style.display = "";
+      };
+     
+      var hide = function () {
+        photoEl.style.display = "none";
+      };
+     
+      return {
+        showView: show,
+        hideView: hide
+      };
+     
+    };
+
+It is also worth noting that in classical web development, navigating between independent views required the use of a page refresh. In Single-page JavaScript applications however, once data is fetched from a server via Ajax, it can simply be dynamically rendered in a new view within the same page without any such refresh being necessary.
+
+The role of navigation thus falls to a "router", which assists in managing application state (e.g allowing users to bookmark a particular view they have navigated to). As routers are, however, neither a part of MVC nor present in every MVC-like framework, I will not be going into them in greater detail in this section.
+
+**To summarize, views are a visual representation of our application data.**
+
+**Controllers** are an intermediary between models and views which are classically responsible for updating the model when the user manipulates the view.
+
+In our photo gallery application, a controller would be responsible for handling changes the user made to the edit view for a particular photo, updating a specific photo model when a user has finished editing.
+
+Remember that the controllers fulfill one role in MVC: the facilitation of the Strategy pattern for the view. In the Strategy pattern regard, the view delegates to the controller at the view's discretion. So, that's how the strategy pattern works. The view could delegate handling user events to the controller when the view sees fit. The view *could* delegate handling model change events to the controller if the view sees fit, but this is not the traditional role of the controller.
+
+In terms of where most JavaScript MVC frameworks detract from what is conventionally considered "MVC" however, it is with controllers. The reasons for this vary, but in my honest opinion, it is that framework authors initially look at the server-side interpretation of MVC, realize that it doesn't translate 1:1 on the client-side and re-interpret the C in MVC to mean something they feel makes more sense. The issue with this however is that it is subjective, increases the complexity in both understanding the classical MVC pattern and of course the role of controllers in modern frameworks.
+
+**To summarize, the takeaway from this section is that controllers manage the logic and coordination between models and views in an application.**
+
 ##jQuery $.when().done() callback
 ---
       $('.hamburger').on('click', function(){
