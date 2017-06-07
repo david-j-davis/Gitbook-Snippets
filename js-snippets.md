@@ -45,6 +45,56 @@ var place = placesData.find(function(item) {
           return state;
         }
       }
+##Basic callback examples
+A function that takes other functions as arguments or returns functions as its result is called a higher-order function, and the function that is passed as an argument is called a callback function. It’s named “callback” because at some point in time it is “called back” by the higher-order function.
+
+The easiest way to understand how higher-order functions and callbacks work is to create your own. So, let’s create one now:
+
+    function fullName(firstName, lastName, callback){
+      console.log("My name is " + firstName + " " + lastName);
+      callback(lastName);
+    }
+    
+    var greeting = function(ln){
+      console.log('Welcome Mr. ' + ln);
+    };
+    
+    fullName("Jackie", "Chan", greeting);
+{% tonic %}
+function fullName(firstName, lastName, callback){
+  console.log("My name is " + firstName + " " + lastName);
+  callback(lastName);
+}
+
+var greeting = function(ln){
+  console.log('Welcome Mr. ' + ln);
+};
+
+fullName("Jackie", "Chan", greeting);
+{% endtonic %}
+
+The callback can be an existing function as shown in the preceding example, or it can be an anonymous function, which we create when we call the higher-order function, as shown in the following example:
+    
+    function fullName(firstName, lastName, callback){
+      console.log("My name is " + firstName + " " + lastName);
+      callback(lastName);
+    }
+    
+    fullName("Jackie", "Chan", function(ln){
+      console.log('Welcome Mr. ' + ln);
+    });
+{% tonic %}
+function fullName(firstName, lastName, callback){
+  console.log("My name is " + firstName + " " + lastName);
+  callback(lastName);
+}
+
+fullName("Jackie", "Chan", function(ln){
+  console.log('Welcome Mr. ' + ln);
+});
+{% endtonic %}
+
+    
 ##Touch Events with jQuery
 ---
       $('obj').bind('touchstart', function(e){
